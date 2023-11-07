@@ -24,12 +24,7 @@ header {
   position: fixed;
   z-index: 1000;
   top: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(252, 75, 52, 1) 0%,
-    rgba(252, 113, 53, 1) 46%,
-    rgba(252, 130, 69, 1) 100%
-  );
+  background-color: rgba(252, 130, 69, 1);
   background-clip: padding-box;
 }
 

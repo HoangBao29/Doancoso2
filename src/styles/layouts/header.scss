@@ -51,7 +51,8 @@
       width: 100%;
     }
     button {
-      background-color: orangered;
+      background-color: unset;
+      border: 1px solid #fff;
       width: 60px !important;
       height: 35px !important;
       span {
