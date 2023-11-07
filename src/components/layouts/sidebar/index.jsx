@@ -14,11 +14,19 @@ const Sidebar = () => {
     );
   };
 
+  const handlePhone = () => {
+    window.open("tel:0902005762");
+  };
+
   if (!token) {
     return (
       <div className="wrapper-sidebar">
         <div className="wrapper-sidebar__button">
-          <Button icon={<PhoneOutlined />} className="button-common">
+          <Button
+            onClick={handlePhone}
+            icon={<PhoneOutlined />}
+            className="button-common"
+          >
             Liên hệ: 0902.005.762
           </Button>
           <Button
