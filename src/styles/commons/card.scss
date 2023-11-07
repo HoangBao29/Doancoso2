@@ -37,9 +37,13 @@
 
 @media screen and (max-width: 600px) {
   .ant-row {
+    margin-left: -6px !important;
+    margin-right: -6px !important;
     .ant-col {
       flex: 0 0 50%;
       max-width: 50%;
+      padding-left: 6px !important;
+      padding-right: 6px !important;
       .ant-image {
         height: 180px;
         img {
