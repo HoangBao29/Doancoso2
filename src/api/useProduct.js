@@ -28,6 +28,32 @@ export const useProduct = () => {
     }
   };
 
+  const getProductAdmin = (type, brand, sort, page, search) => {
+    const rangeFrom = (page - 1) * limit;
+    const rangeTo = page * limit - 1;
+    try {
+      const data = supabase.from("Products").select("*", { count: "exact" });
+      if (type) {
+        data.eq("type", type);
+      }
+      if (brand) {
+        data.eq("brand", brand);
+      }
+      if (sort !== "") {
+        data.order("price", { ascending: sort });
+      }
+      if (page) {
+        data.range(rangeFrom, rangeTo);
+      }
+      if (search) {
+        data.ilike("name", `%${search}%`);
+      }
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   const getProductById = async (id) => {
     try {
       const data = await supabase
@@ -117,5 +143,6 @@ export const useProduct = () => {
     uploadImage,
     getImageUrl,
     deleteImage,
+    getProductAdmin,
   };
 };
