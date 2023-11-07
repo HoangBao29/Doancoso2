@@ -4,6 +4,7 @@ import {
   DashboardOutlined,
   DotChartOutlined,
   HomeOutlined,
+  MessageOutlined,
   PhoneOutlined,
   SearchOutlined,
   ThunderboltOutlined,
@@ -117,6 +118,19 @@ const Header = ({ adminMode }) => {
           />
           <span>HOANG LONG</span>
         </Link>
+        {!token ? (
+          <div
+            style={{ marginRight: "10px" }}
+            className="wrapper-header__top__admin"
+          >
+            <Link onClick={handleLogout} to="/">
+              <MessageOutlined />
+              <span>Giới thiệu</span>
+            </Link>
+          </div>
+        ) : (
+          <div></div>
+        )}
         {token ? (
           <div className="wrapper-header__top__admin">
             <Link onClick={handleLogout} to="/">

@@ -1,7 +1,7 @@
 .wrapper-sidebar {
   position: fixed;
   padding: 10px 15px;
-  background-color: rgba(252, 130, 69, 1);
+  background-color: #fff;
   border-radius: 5px;
   bottom: 0;
   left: 50%;
@@ -10,6 +10,9 @@
   gap: 10px;
   width: 65%;
   justify-content: center;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03),
+    0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  border-top: 1px solid #dedede;
 
   &__button {
     display: flex;
@@ -17,15 +20,19 @@
   }
 
   button {
-    background-color: rgba(252, 130, 69, 1) !important;
-    border: 1px solid rgb(239, 187, 160);
+    background-color: rgb(255, 0, 0);
+    border: none;
+    span {
+      color: #fff;
+      font-weight: 600;
+    }
   }
 }
 
 @media screen and (max-width: 600px) {
   .wrapper-sidebar {
     flex-direction: column;
-    width: calc(100% - 30px);
+    width: 100%;
     &__button {
       justify-content: space-between;
       button {
