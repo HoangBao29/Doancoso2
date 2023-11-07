@@ -1,0 +1,52 @@
+.wrapper-card {
+  border-radius: 15px;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid sandybrown;
+  }
+  .ant-image {
+    height: 235px;
+    img {
+      height: 100%;
+      border-radius: 15px 15px 0 0;
+    }
+  }
+
+  &__content {
+    padding: 10px;
+    border: 1px solid sandybrown;
+    border-radius: 0 0 15px 15px;
+    background-color: rgb(251, 249, 248);
+    h5 {
+      text-align: center;
+      color: black !important;
+      margin-bottom: 10px !important;
+    }
+    span {
+      color: red;
+      font-weight: 600;
+    }
+    .brand-name {
+      color: black;
+      font-weight: 400;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .ant-row {
+    .ant-col {
+      flex: 0 0 50%;
+      max-width: 50%;
+      .ant-image {
+        height: 180px;
+        img {
+          height: 100%;
+          border-radius: 15px 15px 0 0;
+        }
+      }
+    }
+  }
+}

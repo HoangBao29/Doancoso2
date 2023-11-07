@@ -1,0 +1,23 @@
+.wrapper-admin {
+  .wrapper-action {
+    display: flex;
+    gap: 10px;
+    button {
+      background-color: rgb(254, 89, 68);
+      color: #fff;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper-admin {
+    h1 {
+      font-size: 20px !important;
+    }
+    .ant-table-cell {
+      &:first-of-type {
+        width: 10%;
+      }
+    }
+  }
+}

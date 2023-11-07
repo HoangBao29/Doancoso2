@@ -1,0 +1,60 @@
+@import "./layouts/header.scss";
+@import "./layouts/footer.scss";
+@import "./commons/select.scss";
+@import "./homepage.scss";
+@import "./commons/card.scss";
+@import "./detail.scss";
+@import "./layouts/sidebar.scss";
+@import "./commons/button.scss";
+@import "./type.scss";
+@import "./admin.scss";
+@import "./commons/modal.scss";
+@import "./reset.scss";
+
+.App {
+  background-color: #f5f5f5;
+  padding-top: 15px;
+}
+
+header {
+  width: 100%;
+  border-bottom: 1px solid #dedede;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03),
+    0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(252, 75, 52, 1) 0%,
+    rgba(252, 113, 53, 1) 46%,
+    rgba(252, 130, 69, 1) 100%
+  );
+  background-clip: padding-box;
+}
+
+.wrapper-body {
+  max-width: 1250px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  box-sizing: border-box;
+  margin-top: 130px;
+}
+
+.admin-body {
+  margin-top: 70px !important;
+}
+
+footer {
+  border-top: 1px solid #dedede;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03),
+    0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  background-color: #fbfbfb;
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper-body {
+    margin-top: 180px;
+  }
+}

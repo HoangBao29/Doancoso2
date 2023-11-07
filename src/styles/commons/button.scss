@@ -1,0 +1,20 @@
+.button-common {
+  background-color: #fc4b34 !important;
+  border: 1px solid #fc8245;
+  display: flex;
+  align-items: center;
+  span {
+    color: #fff;
+    font-size: 16px;
+  }
+}
+
+.button {
+  text-align: center;
+  button {
+    background-color: #fc4b34;
+  }
+  span {
+    color: #fff;
+  }
+}
