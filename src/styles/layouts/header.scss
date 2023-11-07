@@ -182,13 +182,14 @@
   .wrapper-header__top {
     justify-content: flex-start;
     flex-wrap: wrap;
+    padding: 5px;
     &__logo {
       margin-right: auto;
     }
 
     &__search {
       width: 100%;
-      margin-top: 15px;
+      margin-top: 10px;
     }
     &__contact {
       display: none;
