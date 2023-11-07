@@ -37,7 +37,7 @@ const Admin = () => {
     }
 
     const windowHeight = window.innerHeight;
-    const subtractValue = 310;
+    const subtractValue = 330;
     const calculatedHeight = windowHeight - subtractValue;
     setTableScrollHeight(calculatedHeight);
     // eslint-disable-next-line react-hooks/exhaustive-deps
