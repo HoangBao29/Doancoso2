@@ -1,7 +1,7 @@
 .wrapper-sidebar {
   position: fixed;
   padding: 10px 15px;
-  background-color: #fc4b34;
+  background-color: rgba(252, 130, 69, 1);
   border-radius: 5px;
   bottom: 0;
   left: 50%;
@@ -14,6 +14,11 @@
   &__button {
     display: flex;
     gap: 10px;
+  }
+
+  button {
+    background-color: rgba(252, 130, 69, 1) !important;
+    border: 1px solid rgb(239, 187, 160);
   }
 }
 

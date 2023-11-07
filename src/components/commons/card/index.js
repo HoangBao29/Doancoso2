@@ -8,7 +8,7 @@ export const Card = ({ title, price, image, handleClick, brand }) => {
       <div onClick={handleClick} className="wrapper-card__content">
         <Title level={5}>{title}</Title>
         <span className="brand-name">Thương hiệu: </span>
-        <span className="brand-name">{brand}</span>
+        <p className="brand-name">{brand}</p>
         <div>
           <span>Giá: </span>
           {price ? (
