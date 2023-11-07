@@ -115,7 +115,7 @@ const Header = ({ adminMode }) => {
             src={require("../../../assets/images/logo.png")}
             alt="logo"
           />
-          <span>Hoàng Long Thịnh Phát</span>
+          <span>HOANG LONG</span>
         </Link>
         {token ? (
           <div className="wrapper-header__top__admin">
