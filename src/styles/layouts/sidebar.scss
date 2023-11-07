@@ -21,13 +21,21 @@
   .wrapper-sidebar {
     flex-direction: column;
     width: calc(100% - 30px);
-    button {
-      justify-content: center;
-    }
     &__button {
       justify-content: space-between;
       button {
-        width: 50%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        span {
+          font-size: 14px !important;
+        }
+      }
+    }
+    .outline {
+      justify-content: center;
+      span {
+        font-size: 14px;
       }
     }
   }

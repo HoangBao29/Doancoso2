@@ -8,7 +8,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  padding-bottom: 0;
+  padding-bottom: 15px;
   &__logo {
     display: flex;
     align-items: center;
@@ -59,10 +59,6 @@
       }
     }
   }
-}
-
-.admin-mode {
-  padding-bottom: 15px;
 }
 
 .wrapper-header__bottom {
@@ -197,23 +193,6 @@
     }
   }
   .wrapper-header__bottom {
-    :where(.css-dev-only-do-not-override-qgg3xn).ant-menu
-      .ant-menu-item
-      .ant-menu-item-icon
-      + span,
-    :where(.css-dev-only-do-not-override-qgg3xn).ant-menu
-      .ant-menu-submenu-title
-      .ant-menu-item-icon
-      + span,
-    :where(.css-dev-only-do-not-override-qgg3xn).ant-menu
-      .ant-menu-item
-      .anticon
-      + span,
-    :where(.css-dev-only-do-not-override-qgg3xn).ant-menu
-      .ant-menu-submenu-title
-      .anticon
-      + span {
-      margin-inline-start: 5px !important;
-    }
+    display: none;
   }
 }

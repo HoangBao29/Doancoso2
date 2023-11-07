@@ -1,8 +1,4 @@
-import {
-  FacebookOutlined,
-  HomeOutlined,
-  PhoneOutlined,
-} from "@ant-design/icons";
+import { FacebookOutlined, PhoneOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import React, { useEffect, useState } from "react";
 
@@ -33,7 +29,7 @@ const Sidebar = () => {
             Facebook
           </Button>
         </div>
-        <Button icon={<HomeOutlined />} className="button-common">
+        <Button className="button-common outline">
           Địa chỉ: Tổ 22C, Hòa Phát, Cẩm Lệ, Đà Nẵng
         </Button>
       </div>
