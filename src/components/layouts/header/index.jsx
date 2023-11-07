@@ -123,7 +123,7 @@ const Header = ({ adminMode }) => {
             style={{ marginRight: "10px" }}
             className="wrapper-header__top__admin"
           >
-            <Link onClick={handleLogout} to="/">
+            <Link to="/gioi-thieu">
               <MessageOutlined />
               <span>Giới thiệu</span>
             </Link>
