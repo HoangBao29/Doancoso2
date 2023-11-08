@@ -34,10 +34,17 @@ const Footer = () => {
                   <span>Phan Thanh Linh</span>
                 </li>
                 <li>
-                  <span>Địa chỉ: </span>
+                  <span>Trụ sở chính: </span>
                   <span>
                     Tổ 22C, phường Hòa Phát, quận Cẩm Lệ, thành phố Đà Nẵng,
                     Việt Nam
+                  </span>
+                </li>
+                <li>
+                  <span>Tổng kho: </span>
+                  <span>
+                    97B Đinh Liệt, phường Hòa An, quận Cẩm Lệ, thành phố Đà
+                    Nẵng, Việt Nam.
                   </span>
                 </li>
                 <li>

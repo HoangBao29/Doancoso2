@@ -1,13 +1,7 @@
 import {
-  ApiOutlined,
-  CarOutlined,
-  DashboardOutlined,
-  DotChartOutlined,
-  HomeOutlined,
+  MenuOutlined,
   MessageOutlined,
-  PhoneOutlined,
   SearchOutlined,
-  ThunderboltOutlined,
   UserSwitchOutlined,
 } from "@ant-design/icons";
 import { AutoComplete, Button, Menu } from "antd";
@@ -34,12 +28,10 @@ const Header = ({ adminMode }) => {
   }
 
   const items = [
-    getItem("Trang chủ", "sub1", <HomeOutlined />),
-    getItem("Máy phát điện", "sub2", <ApiOutlined />),
-    getItem("Máy nén khí", "sub3", <DotChartOutlined />),
-    getItem("Máy phát hàn", "sub4", <ThunderboltOutlined />),
-    getItem("Xe nâng", "sub5", <CarOutlined />),
-    getItem("Động cơ nổ khác", "sub6", <DashboardOutlined />),
+    getItem("Máy phát điện", "sub2"),
+    getItem("Máy nén khí", "sub3"),
+    getItem("Máy phát hàn", "sub4"),
+    getItem("Xe nâng", "sub5"),
   ];
 
   useEffect(() => {
@@ -79,10 +71,6 @@ const Header = ({ adminMode }) => {
 
   const onSelectMenu = (value) => {
     switch (value?.key) {
-      case "sub1":
-        navigate("/");
-        break;
-
       case "sub2":
         navigate("/may-phat-dien");
         break;
@@ -110,82 +98,82 @@ const Header = ({ adminMode }) => {
   return (
     <header>
       <div className={`wrapper-header__top ${adminMode ? "admin-mode" : ""}`}>
+        <div className="toggle">
+          <MenuOutlined />
+        </div>
+        {token ? (
+          <div></div>
+        ) : (
+          <div className="menu-header">
+            <Menu
+              mode="horizontal"
+              onSelect={onSelectMenu}
+              items={items}
+              defaultSelectedKeys={["sub1"]}
+            />
+          </div>
+        )}
         <Link to="/" className="wrapper-header__top__logo">
           <img
             className="wrapper-header__logo"
             src={require("../../../assets/images/logo.png")}
             alt="logo"
           />
-          <span>HOANG LONG</span>
+          <span>HOÀNG</span>
+          <span>LONG</span>
         </Link>
-        {!token ? (
-          <div
-            style={{ marginRight: "10px" }}
-            className="wrapper-header__top__admin"
-          >
-            <Link to="/gioi-thieu">
-              <MessageOutlined />
-              <span>Giới thiệu</span>
-            </Link>
+        <div className="wrapper-header__top__action">
+          {!token ? (
+            <div className="wrapper-header__top__search">
+              <AutoComplete
+                style={{
+                  height: "auto",
+                }}
+                options={options}
+                onSelect={onSelect}
+                onSearch={handleSearch}
+                onChange={handleChange}
+                placeholder="Nhập tên sản phẩm cần tìm..."
+                allowClear
+                value={value}
+              ></AutoComplete>
+              <Button className="button" icon={<SearchOutlined />}></Button>
+            </div>
+          ) : (
+            <></>
+          )}
+          <div className="action">
+            {!token ? (
+              <div
+                style={{ marginRight: "10px" }}
+                className="wrapper-header__top__admin"
+              >
+                <Link to="/gioi-thieu">
+                  <MessageOutlined />
+                  <span>Giới thiệu</span>
+                </Link>
+              </div>
+            ) : (
+              <div></div>
+            )}
+            {token ? (
+              <div className="wrapper-header__top__admin">
+                <Link onClick={handleLogout} to="/">
+                  <UserSwitchOutlined />
+                  <span>Client</span>
+                </Link>
+              </div>
+            ) : (
+              <div className="wrapper-header__top__admin">
+                <Link to="/admin">
+                  <UserSwitchOutlined />
+                  <span>Admin</span>
+                </Link>
+              </div>
+            )}
           </div>
-        ) : (
-          <div></div>
-        )}
-        {token ? (
-          <div className="wrapper-header__top__admin">
-            <Link onClick={handleLogout} to="/">
-              <UserSwitchOutlined />
-              <span>Client</span>
-            </Link>
-          </div>
-        ) : (
-          <div className="wrapper-header__top__admin">
-            <Link to="/admin">
-              <UserSwitchOutlined />
-              <span>Admin</span>
-            </Link>
-          </div>
-        )}
-        {!token ? (
-          <div className="wrapper-header__top__search">
-            <AutoComplete
-              style={{
-                height: "auto",
-              }}
-              options={options}
-              onSelect={onSelect}
-              onSearch={handleSearch}
-              onChange={handleChange}
-              placeholder="Nhập tên sản phẩm cần tìm..."
-              allowClear
-              value={value}
-            ></AutoComplete>
-            <Button className="button" icon={<SearchOutlined />}></Button>
-          </div>
-        ) : (
-          <></>
-        )}
-        {token ? (
-          <></>
-        ) : (
-          <div className="wrapper-header__top__contact">
-            <PhoneOutlined />
-            <span>Liên hệ tư vấn</span>
-          </div>
-        )}
-      </div>
-      {token ? (
-        <div></div>
-      ) : (
-        <div className="wrapper-header__bottom">
-          <Menu
-            mode="horizontal"
-            onSelect={onSelectMenu}
-            items={items}
-            defaultSelectedKeys={["sub1"]}
-          />
         </div>
-      )}
+      </div>
     </header>
   );
 };

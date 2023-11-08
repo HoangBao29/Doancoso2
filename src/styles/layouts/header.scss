@@ -9,19 +9,29 @@
   align-items: center;
   padding: 15px;
   padding-bottom: 15px;
+  .toggle {
+    display: none;
+    span {
+      font-size: 28px;
+      color: #828282;
+    }
+  }
   &__logo {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    gap: 10px;
     img {
       width: 60px;
     }
 
     span {
-      color: black;
+      color: rgb(12, 12, 222);
       font-weight: 600;
-      font-size: 14px;
+      font-size: 36px;
       font-family: serif;
-      line-height: 1;
+      &:last-of-type {
+        color: #fe0000;
+      }
     }
   }
 
@@ -46,7 +56,6 @@
 
   &__search {
     height: 40px;
-    width: 40%;
     display: flex;
     .ant-select {
       height: 35px !important;
@@ -62,132 +71,43 @@
       }
     }
   }
-}
 
-.wrapper-header__bottom {
-  max-width: 1250px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 15px;
-  padding-top: 5px;
-  ul {
+  &__action {
     display: flex;
+    gap: 20px;
     justify-content: space-between;
-    background: none;
-    color: #fff;
-    border: none;
-    li {
-      padding-inline: 0 !important;
-      font-size: 16px;
+    align-items: center;
+    .action {
       display: flex;
-      align-items: center;
-      display: flex !important;
+      gap: 10px;
     }
-    .ant-menu-item-active {
-      color: yellow !important;
-    }
-  }
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu::before {
-    content: none;
-    display: flex;
-  }
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu-horizontal::after {
-    content: none;
-    display: flex;
-  }
-  :where(
-      .css-dev-only-do-not-override-qgg3xn
-    ).ant-menu-light.ant-menu-horizontal
-    > .ant-menu-item:hover::after,
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu-light
-    > .ant-menu.ant-menu-horizontal
-    > .ant-menu-item:hover::after,
-  :where(
-      .css-dev-only-do-not-override-qgg3xn
-    ).ant-menu-light.ant-menu-horizontal
-    > .ant-menu-submenu:hover::after,
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu-light
-    > .ant-menu.ant-menu-horizontal
-    > .ant-menu-submenu:hover::after,
-  :where(
-      .css-dev-only-do-not-override-qgg3xn
-    ).ant-menu-light.ant-menu-horizontal
-    > .ant-menu-item-active::after,
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu-light
-    > .ant-menu.ant-menu-horizontal
-    > .ant-menu-item-active::after,
-  :where(
-      .css-dev-only-do-not-override-qgg3xn
-    ).ant-menu-light.ant-menu-horizontal
-    > .ant-menu-submenu-active::after,
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu-light
-    > .ant-menu.ant-menu-horizontal
-    > .ant-menu-submenu-active::after,
-  :where(
-      .css-dev-only-do-not-override-qgg3xn
-    ).ant-menu-light.ant-menu-horizontal
-    > .ant-menu-item-open::after,
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu-light
-    > .ant-menu.ant-menu-horizontal
-    > .ant-menu-item-open::after,
-  :where(
-      .css-dev-only-do-not-override-qgg3xn
-    ).ant-menu-light.ant-menu-horizontal
-    > .ant-menu-submenu-open::after,
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu-light
-    > .ant-menu.ant-menu-horizontal
-    > .ant-menu-submenu-open::after {
-    border-bottom-width: 2px;
-    border-bottom-color: yellow !important;
-  }
-  :where(
-      .css-dev-only-do-not-override-qgg3xn
-    ).ant-menu-light.ant-menu-horizontal
-    > .ant-menu-item-selected,
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu-light
-    > .ant-menu.ant-menu-horizontal
-    > .ant-menu-item-selected,
-  :where(
-      .css-dev-only-do-not-override-qgg3xn
-    ).ant-menu-light.ant-menu-horizontal
-    > .ant-menu-submenu-selected,
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu-light
-    > .ant-menu.ant-menu-horizontal
-    > .ant-menu-submenu-selected {
-    color: yellow !important;
-  }
-  :where(
-      .css-dev-only-do-not-override-qgg3xn
-    ).ant-menu-light.ant-menu-horizontal
-    > .ant-menu-item-selected::after,
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu-light
-    > .ant-menu.ant-menu-horizontal
-    > .ant-menu-item-selected::after,
-  :where(
-      .css-dev-only-do-not-override-qgg3xn
-    ).ant-menu-light.ant-menu-horizontal
-    > .ant-menu-submenu-selected::after,
-  :where(.css-dev-only-do-not-override-qgg3xn).ant-menu-light
-    > .ant-menu.ant-menu-horizontal
-    > .ant-menu-submenu-selected::after {
-    border-bottom-color: yellow !important;
   }
 }
 
-.active {
-  color: rgb(251, 218, 56) !important;
-  font-weight: 600;
+@media only screen and (max-width: 1250px) {
+  .wrapper-header__top {
+    .toggle {
+      display: block;
+    }
+  }
+  .menu-header {
+    display: none;
+  }
+  .action {
+    div {
+      &:first-of-type {
+        display: none;
+      }
+    }
+  }
+  .wrapper-header__top__search {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 600px) {
   .wrapper-header__top {
-    justify-content: flex-start;
-    flex-wrap: wrap;
     padding: 10px;
-    &__logo {
-      margin-right: auto;
-    }
-
     &__search {
       width: 100%;
       margin-top: 10px;
@@ -195,8 +115,26 @@
     &__contact {
       display: none;
     }
+    &__logo {
+      span {
+        font-size: 28px;
+      }
+    }
   }
   .wrapper-header__bottom {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .wrapper-header__top {
+    &__logo {
+      span {
+        font-size: 24px;
+      }
+      img {
+        width: 50px;
+      }
+    }
   }
 }

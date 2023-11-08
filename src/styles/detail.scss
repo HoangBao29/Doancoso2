@@ -21,10 +21,22 @@
           }
         }
         span {
-          font-size: 26px;
+          font-size: 18px;
           &:first-of-type {
             font-weight: 600;
           }
+        }
+      }
+    }
+    &__intro {
+      padding: 15px;
+      border: 2px dashed red;
+      width: fit-content;
+      li {
+        font-size: 18px;
+        span {
+          margin-right: 3px;
+          color: green;
         }
       }
     }

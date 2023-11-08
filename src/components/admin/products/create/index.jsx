@@ -117,52 +117,35 @@ const Create = ({ isModalOpen, handleCancel }) => {
             />
           </Form.Item>
 
-          <Form.Item
-            name="brand"
-            rules={[
-              {
-                required: true,
-                message: "Nhập thương hiệu sản phẩm!",
-              },
-            ]}
-          >
+          <Form.Item name="brand">
             <Input placeholder="Thương hiệu sản phẩm" />
           </Form.Item>
 
-          <Form.Item
-            name="price"
-            rules={[
-              {
-                required: true,
-                message: "Nhập giá sản phẩm!",
-              },
-            ]}
-          >
+          <Form.Item name="price">
             <Input placeholder="Giá sản phẩm" />
           </Form.Item>
 
-          <Form.Item
-            name="description"
-            rules={[
-              {
-                required: true,
-                message: "Nhập thông tin thêm!",
-              },
-            ]}
-          >
+          <Form.Item name="watt">
+            <Input placeholder="Công suất sản phẩm" />
+          </Form.Item>
+
+          <Form.Item name="engine">
+            <Input placeholder="Động cơ sản phẩm" />
+          </Form.Item>
+
+          <Form.Item name="size">
+            <Input placeholder="Kích thước sản phẩm" />
+          </Form.Item>
+
+          <Form.Item name="weight">
+            <Input placeholder="Trọng lượng sản phẩm" />
+          </Form.Item>
+
+          <Form.Item name="description">
             <Input placeholder="Thông tin thêm" />
           </Form.Item>
 
-          <Form.Item
-            label="Chọn ảnh sản phẩm"
-            name="image"
-            rules={[
-              {
-                required: true,
-                message: "Nhập thông tin thêm!",
-              },
-            ]}
-          >
+          <Form.Item label="Chọn ảnh sản phẩm" name="image">
             <input
               onChange={handleFileChange}
               type="file"

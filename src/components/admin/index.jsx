@@ -12,12 +12,12 @@ const Admin = () => {
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
   const [tableScrollHeight, setTableScrollHeight] = useState(0);
   const [idEdit, setIdEdit] = useState("");
-  const { getProduct, deleteProduct, getProductById } = useProduct();
+  const { getProductAdmin, deleteProduct, getProductById } = useProduct();
   const { Title } = Typography;
   const navigate = useNavigate();
 
   useEffect(() => {
-    getProduct().then((res) => {
+    getProductAdmin().then((res) => {
       setListProduct(
         res?.data?.map((item) => {
           return {

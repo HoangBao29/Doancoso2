@@ -3,6 +3,7 @@
   width: 100%;
   margin: 0 auto;
   padding: 40px 15px;
+  padding-bottom: 60px;
   .ant-col {
     ul {
       li {
@@ -28,9 +29,8 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 950px) {
   .wrapper-footer {
-    padding: 20px 10px;
     .ant-row {
       .ant-col {
         display: none;
@@ -42,12 +42,28 @@
           max-width: 100%;
           ul {
             li {
+              text-align: center;
               &:first-of-type {
                 a {
                   justify-content: center;
                 }
               }
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper-footer {
+    padding: 20px 10px;
+    .ant-row {
+      .ant-col {
+        ul {
+          li {
+            text-align: left !important;
           }
         }
       }

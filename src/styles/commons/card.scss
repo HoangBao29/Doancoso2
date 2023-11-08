@@ -35,6 +35,24 @@
   }
 }
 
+@media screen and (max-width: 950px) {
+  .ant-row {
+    .ant-col {
+      flex: 0 0 calc(100% / 3);
+      max-width: calc(100% / 3);
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .ant-row {
+    .ant-col {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+}
+
 @media screen and (max-width: 600px) {
   .ant-row {
     margin-left: -6px !important;

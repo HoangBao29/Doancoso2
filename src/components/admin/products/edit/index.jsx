@@ -23,6 +23,10 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
           type: res?.data?.[0]?.type,
           brand: res?.data?.[0]?.brand,
           price: res?.data?.[0]?.price,
+          watt: res?.data?.[0]?.watt,
+          engine: res?.data?.[0]?.engine,
+          weight: res?.data?.[0]?.weight,
+          size: res?.data?.[0]?.size,
           description: res?.data?.[0]?.description,
         });
       });
@@ -89,7 +93,7 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
         >
           <Form.Item
             name="name"
-            label="Tên sản phẩm"
+            label="Tên"
             rules={[
               {
                 required: true,
@@ -97,12 +101,12 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
               },
             ]}
           >
-            <Input placeholder="Tên" />
+            <Input placeholder="Tên sản phẩm" />
           </Form.Item>
 
           <Form.Item
             name="type"
-            label="Loại"
+            label="Chọn loại"
             rules={[
               {
                 required: true,
@@ -137,55 +141,35 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
             />
           </Form.Item>
 
-          <Form.Item
-            name="brand"
-            label="Thương hiệu"
-            rules={[
-              {
-                required: true,
-                message: "Nhập thương hiệu sản phẩm!",
-              },
-            ]}
-          >
+          <Form.Item name="brand" label="Thương hiệu">
             <Input placeholder="Thương hiệu sản phẩm" />
           </Form.Item>
 
-          <Form.Item
-            name="price"
-            label="Giá"
-            rules={[
-              {
-                required: true,
-                message: "Nhập giá sản phẩm!",
-              },
-            ]}
-          >
+          <Form.Item name="price" label="Giá">
             <Input placeholder="Giá sản phẩm" />
           </Form.Item>
 
-          <Form.Item
-            name="description"
-            label="Thông tin"
-            rules={[
-              {
-                required: true,
-                message: "Nhập thông tin thêm!",
-              },
-            ]}
-          >
+          <Form.Item name="watt" label="Công suất">
+            <Input placeholder="Công suất sản phẩm" />
+          </Form.Item>
+
+          <Form.Item name="engine" label="Động cơ">
+            <Input placeholder="Động cơ sản phẩm" />
+          </Form.Item>
+
+          <Form.Item name="size" label="Kích thước">
+            <Input placeholder="Kích thước sản phẩm" />
+          </Form.Item>
+
+          <Form.Item name="weight" label="Trọng lượng">
+            <Input placeholder="Trọng lượng sản phẩm" />
+          </Form.Item>
+
+          <Form.Item name="description" label="Thông tin thêm">
             <Input placeholder="Thông tin thêm" />
           </Form.Item>
 
-          <Form.Item
-            name="image"
-            label="Ảnh"
-            rules={[
-              {
-                required: true,
-                message: "Vui lòng tải ảnh lên!",
-              },
-            ]}
-          >
+          <Form.Item label="Chọn ảnh" name="image">
             <input
               onChange={handleFileChange}
               type="file"

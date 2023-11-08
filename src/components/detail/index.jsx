@@ -1,3 +1,4 @@
+import { CheckSquareOutlined } from "@ant-design/icons";
 import { Breadcrumb, Col, Image, Row, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -71,7 +72,7 @@ const Detail = () => {
       {product &&
         product?.map((item, index) => {
           return (
-            <Row key={index} gutter={20} className="wrapper-detail__content">
+            <Row key={index} gutter={40} className="wrapper-detail__content">
               <Col span={12}>
                 <Image
                   src={require("../../assets/images/products/product1.jpg")}
@@ -89,22 +90,85 @@ const Detail = () => {
                       <span>Liên hệ</span>
                     )}
                   </div>
-                  <div>
-                    <span>Thương hiệu: </span>
-                    <span>{item?.brand}</span>
-                  </div>
-                  <div>
-                    <span>Thông tin thêm: </span>
-                    <span>{item?.description}</span>
-                  </div>
-                  <div>
-                    <span>Cửa hàng hiện có: </span>
-                    <span>
-                      Công ty Hoàng Long Thịnh Phát, Tổ 22C, phường Hòa Phát,
-                      quận Cẩm Lệ, thành phố Đà Nẵng.
-                    </span>
-                  </div>
+                  {item?.brand ? (
+                    <div>
+                      <span>Thương hiệu: </span>
+                      <span>{item?.brand}</span>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  {item?.watt ? (
+                    <div>
+                      <span>Công suất: </span>
+                      <span>{item?.watt}</span>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  {item?.engine ? (
+                    <div>
+                      <span>Động cơ: </span>
+                      <span>{item?.engine}</span>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  {item?.size ? (
+                    <div>
+                      <span>Kích thước: </span>
+                      <span>{item?.size}</span>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  {item?.weight ? (
+                    <div>
+                      <span>Trọng lượng: </span>
+                      <span>{item?.weight}</span>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  {item?.description ? (
+                    <div>
+                      <span>Thông tin thêm: </span>
+                      <span>{item?.description}</span>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
+                <ul className="wrapper-detail__content__intro">
+                  <li>
+                    <CheckSquareOutlined />
+                    Miễn phí lắp đặt Toàn Quốc
+                  </li>
+                  <li>
+                    <CheckSquareOutlined />
+                    Phụ kiện chính hãng đi kèm đầy đủ
+                  </li>
+                  <li>
+                    <CheckSquareOutlined />
+                    Bảo hành chính hãng dài hạn
+                  </li>
+                  <li>
+                    <CheckSquareOutlined />
+                    Cam kết giá tốt nhất thị trường
+                  </li>
+                  <li>
+                    <CheckSquareOutlined />
+                    Giao hàng toàn quốc
+                  </li>
+                  <li>
+                    <CheckSquareOutlined />
+                    Hàng chính hãng 100%
+                  </li>
+                  <li>
+                    <CheckSquareOutlined />
+                    Liên hệ” để biết chính xác giá sản phẩm
+                  </li>
+                </ul>
               </Col>
             </Row>
           );
