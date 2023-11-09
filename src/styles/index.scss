@@ -64,3 +64,9 @@ footer {
     margin-top: 65px;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .admin-body {
+    margin-top: 50px !important;
+  }
+}

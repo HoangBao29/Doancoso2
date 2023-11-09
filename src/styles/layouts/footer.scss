@@ -56,9 +56,16 @@
   }
 }
 
+@media screen and (max-width: 700px) {
+  .wrapper-footer {
+    padding-bottom: 100px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .wrapper-footer {
     padding: 20px 10px;
+    padding-bottom: 100px;
     .ant-row {
       .ant-col {
         ul {
