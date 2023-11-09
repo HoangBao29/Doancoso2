@@ -92,6 +92,7 @@ const Header = ({ adminMode }) => {
   };
 
   const onSelectMenu = (value) => {
+    onClose();
     switch (value?.key) {
       case "sub2":
         navigate("/may-phat-dien");
@@ -208,6 +209,27 @@ const Header = ({ adminMode }) => {
             )}
           </div>
         </div>
+      </div>
+      <div className="wrapper-header__bot">
+        {!token ? (
+          <div className="searching">
+            <AutoComplete
+              style={{
+                height: "auto",
+              }}
+              options={options}
+              onSelect={onSelect}
+              onSearch={handleSearch}
+              onChange={handleChange}
+              placeholder="Nhập tên sản phẩm cần tìm..."
+              allowClear
+              value={value}
+            ></AutoComplete>
+            <Button className="button" icon={<SearchOutlined />}></Button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </header>
   );

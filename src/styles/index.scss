@@ -10,6 +10,7 @@
 @import "./admin.scss";
 @import "./commons/modal.scss";
 @import "./introduce.scss";
+@import "./page.scss";
 @import "./reset.scss";
 
 .App {
@@ -49,6 +50,15 @@ footer {
   background-color: #fbfbfb;
 }
 
+@media screen and (max-width: 1250px) {
+  .wrapper-body {
+    margin-top: 132px;
+  }
+  .admin-body {
+    margin-top: 86px !important;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .wrapper-body {
     padding: 10px 0;
@@ -57,16 +67,27 @@ footer {
   footer {
     margin-top: 10px;
   }
+  .admin-body {
+    margin-top: 76px !important;
+  }
 }
 
 @media screen and (max-width: 600px) {
   .wrapper-body {
-    margin-top: 65px;
+    margin-top: 128px;
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
   .admin-body {
     margin-top: 50px !important;
+  }
+
+  .wrapper-body {
+    margin-top: 116px;
+  }
+
+  .admin-body {
+    margin-top: 66px !important;
   }
 }

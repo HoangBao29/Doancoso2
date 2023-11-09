@@ -1,6 +1,6 @@
-import { Col, Row } from "antd";
+import { Breadcrumb, Col, Row } from "antd";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useProduct } from "../../../api/useProduct";
 import { Card } from "../../commons/card";
 
@@ -22,7 +22,14 @@ const Push = () => {
   }, []);
 
   return (
-    <div className="wrapper-detail">
+    <div className="wrapper-detail__card">
+      <Breadcrumb
+        style={{ marginBottom: "20px" }}
+        items={[
+          { title: <Link to="/">Trang chủ</Link> },
+          { title: product?.[0]?.type },
+        ]}
+      />
       <Row gutter={[24, 16]}>
         {product &&
           product.map((item, index) => {

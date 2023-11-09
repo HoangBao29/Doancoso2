@@ -176,22 +176,24 @@ const Detail = () => {
       <Title level={3} style={{ marginTop: "20px" }}>
         Sản phẩm cùng loại tương tự
       </Title>
-      <Row gutter={[24, 16]}>
-        {productType &&
-          productType.map((item, index) => {
-            return (
-              <Col key={index} span={6}>
-                <Card
-                  title={item?.name}
-                  price={item?.price}
-                  brand={item?.brand}
-                  image={item?.image}
-                  handleClick={() => handleDetail(item?.id)}
-                />
-              </Col>
-            );
-          })}
-      </Row>
+      <div className="detail-card">
+        <Row gutter={[24, 16]}>
+          {productType &&
+            productType.map((item, index) => {
+              return (
+                <Col key={index} span={6}>
+                  <Card
+                    title={item?.name}
+                    price={item?.price}
+                    brand={item?.brand}
+                    image={item?.image}
+                    handleClick={() => handleDetail(item?.id)}
+                  />
+                </Col>
+              );
+            })}
+        </Row>
+      </div>
     </div>
   );
 };
