@@ -43,7 +43,7 @@ const Footer = () => {
                 <li>
                   <span>Tổng kho: </span>
                   <span>
-                    97B Đinh Liệt, phường Hòa An, quận Cẩm Lệ, thành phố Đà
+                    79B Đinh Liệt, phường Hòa An, quận Cẩm Lệ, thành phố Đà
                     Nẵng, Việt Nam.
                   </span>
                 </li>

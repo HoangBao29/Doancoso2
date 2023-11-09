@@ -38,7 +38,7 @@ const Sidebar = () => {
           </Button>
         </div>
         <Button className="button-common outline">
-          Địa chỉ: Tổ 22C, Hòa Phát, Cẩm Lệ, Đà Nẵng
+          Địa chỉ: 79B Đinh Liệt, Hòa An, Cẩm Lệ, Đà Nẵng.
         </Button>
       </div>
     );
