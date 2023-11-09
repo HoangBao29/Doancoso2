@@ -74,10 +74,7 @@ const Detail = () => {
           return (
             <Row key={index} gutter={40} className="wrapper-detail__content">
               <Col span={12}>
-                <Image
-                  src={require("../../assets/images/products/product1.jpg")}
-                  alt="product"
-                ></Image>
+                <Image src={item?.image} alt="product"></Image>
               </Col>
               <Col span={12}>
                 <div className="wrapper-detail__content__description">
