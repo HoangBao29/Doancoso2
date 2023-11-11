@@ -144,7 +144,7 @@ const Header = ({ adminMode }) => {
           />
         </Drawer>
         {token ? (
-          <div></div>
+          <></>
         ) : (
           <div className="menu-header">
             <Menu
