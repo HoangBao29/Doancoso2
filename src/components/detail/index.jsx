@@ -1,5 +1,5 @@
 import { CheckSquareOutlined } from "@ant-design/icons";
-import { Breadcrumb, Col, Image, Row, Typography } from "antd";
+import { Breadcrumb, Col, Image, Row, Typography, Carousel } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useProduct } from "../../api/useProduct";
@@ -16,8 +16,6 @@ const Detail = () => {
   useEffect(() => {
     getProductById(params.id).then((res) => {
       setProduct(res?.data);
-      console.log(res?.data);
-
       getProduct(res?.data?.[0]?.type).then((res) => {
         setProductType(res?.data);
       });
@@ -74,7 +72,26 @@ const Detail = () => {
           return (
             <Row key={index} gutter={40} className="wrapper-detail__content">
               <Col span={12}>
-                <Image src={item?.image} alt="product"></Image>
+                {item?.image ? (
+                  <Carousel autoplay>
+                    {item?.image ? <img src={item?.image} alt="img" /> : <></>}
+                    {item?.imagesub1 ? (
+                      <img src={item?.imagesub1} alt="img" />
+                    ) : (
+                      <></>
+                    )}
+                    {item?.imagesub2 ? (
+                      <img src={item?.imagesub2} alt="img" />
+                    ) : (
+                      <></>
+                    )}
+                  </Carousel>
+                ) : (
+                  <Image
+                    src={require("../../assets/images/no-image.png")}
+                    alt="slide"
+                  />
+                )}
               </Col>
               <Col span={12}>
                 <div className="wrapper-detail__content__description">
@@ -91,6 +108,14 @@ const Detail = () => {
                     <div>
                       <span>Thương hiệu: </span>
                       <span>{item?.brand}</span>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  {item?.model ? (
+                    <div>
+                      <span>Model: </span>
+                      <span>{item?.model}</span>
                     </div>
                   ) : (
                     <></>

@@ -12,7 +12,8 @@ const Admin = () => {
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
   const [tableScrollHeight, setTableScrollHeight] = useState(0);
   const [idEdit, setIdEdit] = useState("");
-  const { getProductAdmin, deleteProduct, getProductById } = useProduct();
+  const { getProductAdmin, deleteProduct, getProductById, deleteImage } =
+    useProduct();
   const { Title } = Typography;
   const navigate = useNavigate();
 
@@ -105,7 +106,12 @@ const Admin = () => {
 
   const handleRemove = (id) => {
     getProductById(id).then((res) => {
-      deleteProduct(id, res?.data?.[0]?.image).then((res) => {
+      deleteImage(
+        res?.data?.[0]?.image,
+        res?.data?.[0]?.imagesub1,
+        res?.data?.[0]?.imagesub2
+      );
+      deleteProduct(id).then((res) => {
         message.success("Xóa sản phẩm thành công", 1);
         setTimeout(function () {
           window.location.reload();

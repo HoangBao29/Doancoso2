@@ -15,6 +15,7 @@ import Admin from "./components/admin";
 import Login from "./components/admin/login";
 import { useLocation } from "react-router-dom";
 import Introduce from "./components/introduce";
+import Chip from "./components/pages/chip";
 
 function App() {
   const location = useLocation();
@@ -33,6 +34,7 @@ function App() {
           <Route path="/may-phat-dien" element={<Electric />} />
           <Route path="/may-phat-han" element={<Circle />} />
           <Route path="/xe-nang" element={<Push />} />
+          <Route path="/linh-kien-thiet-bi-dien-tu" element={<Chip />} />
           <Route path="/dong-co-no-khac" element={<Others />} />
           <Route path="/gioi-thieu" element={<Introduce />} />
           <Route path="/admin" element={<Admin />} />

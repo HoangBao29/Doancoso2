@@ -14,7 +14,7 @@ const Footer = () => {
       ) : (
         <div className="wrapper-footer">
           <Row gutter={[24]}>
-            <Col span={10}>
+            <Col span={14}>
               <ul>
                 <li>
                   <Link to="/" className="wrapper-footer__logo">
@@ -36,8 +36,8 @@ const Footer = () => {
                 <li>
                   <span>Trụ sở chính: </span>
                   <span>
-                    Tổ 22C, phường Hòa Phát, quận Cẩm Lệ, thành phố Đà Nẵng,
-                    Việt Nam
+                    371 Trường Chinh, phường An Khê, Quận Thanh Khê, thành phố
+                    Đà Nẵng, Việt Nam.
                   </span>
                 </li>
                 <li>
@@ -53,7 +53,7 @@ const Footer = () => {
                 </li>
               </ul>
             </Col>
-            <Col span={4}>
+            {/* <Col span={4}>
               <ul>
                 <li>Giới thiệu</li>
                 <li>Về Hoàng Long Thành Phát</li>
@@ -69,14 +69,13 @@ const Footer = () => {
                 <li>Chính sách bảo hành</li>
                 <li>Chính sách đổi trả</li>
               </ul>
-            </Col>
-            <Col span={4}>
+            </Col> */}
+            <Col span={10}>
               <ul>
                 <li>Liên hệ</li>
-                <li>Hotline</li>
-                <li>Email</li>
-                <li>Messenger</li>
-                <li>Zalo</li>
+                <li>Hotline: 0902.005.762 - 0964.660.621</li>
+                <li>Email: Hoanglongmpd@gmail.com</li>
+                <li>Zalo: 0902005762</li>
               </ul>
             </Col>
           </Row>

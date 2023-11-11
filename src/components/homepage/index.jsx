@@ -16,8 +16,6 @@ const Homepage = () => {
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
 
-  const onChange = (currentSlide) => {};
-
   useEffect(() => {
     getProduct(filterType, filterBrand, sort, page).then((res) => {
       setProduct(res?.data);
@@ -49,8 +47,12 @@ const Homepage = () => {
       value: "Xe nâng",
     },
     {
-      label: "Các loại khác",
-      value: "Các loại khác",
+      label: "Linh kiện thiết bị điện tử",
+      value: "Linh kiện thiết bị điện tử",
+    },
+    {
+      label: "Động cơ nổ khác",
+      value: "Động cơ nổ khác",
     },
   ];
 
@@ -100,30 +102,30 @@ const Homepage = () => {
   return (
     <div className="wrapper-homepage">
       <div className="wrapper-homepage__slide">
-        <Carousel autoplay afterChange={onChange}>
+        <Carousel autoplay>
           <img
-            src={require("../../assets/images/slide/slide1.jpg")}
+            src={require("../../assets/images/slide/slide1.gif")}
             alt="slide"
           />
           <img
-            src={require("../../assets/images/slide/slide2.jpg")}
+            src={require("../../assets/images/slide/slide2.gif")}
             alt="slide"
           />
           <img
-            src={require("../../assets/images/slide/slide3.jpg")}
+            src={require("../../assets/images/slide/slide3.gif")}
             alt="slide"
           />
         </Carousel>
         <ul className="list-image">
           <li>
             <img
-              src={require("../../assets/images/slide/slide1.jpg")}
+              src={require("../../assets/images/slide/slide3.gif")}
               alt="slide"
             />
           </li>
           <li>
             <img
-              src={require("../../assets/images/slide/slide2.jpg")}
+              src={require("../../assets/images/slide/slide2.gif")}
               alt="slide"
             />
           </li>

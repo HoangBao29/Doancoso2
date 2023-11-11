@@ -8,6 +8,7 @@ import {
   DashboardOutlined,
   DotChartOutlined,
   ThunderboltOutlined,
+  DeleteColumnOutlined,
 } from "@ant-design/icons";
 import { AutoComplete, Button, Menu, Drawer } from "antd";
 import debounce from "lodash.debounce";
@@ -53,6 +54,7 @@ const Header = ({ adminMode }) => {
     getItem("Máy phát hàn", "sub4", <ApiOutlined />),
     getItem("Xe nâng", "sub5", <CarOutlined />),
     getItem("Động cơ nổ khác", "sub6", <DashboardOutlined />),
+    getItem("Linh kiện thiết bị điện tử", "sub8", <DeleteColumnOutlined />),
     getItem("Giới thiệu", "sub7", <MessageOutlined />),
   ];
 
@@ -112,6 +114,10 @@ const Header = ({ adminMode }) => {
 
       case "sub6":
         navigate("/dong-co-no-khac");
+        break;
+
+      case "sub8":
+        navigate("/linh-kien-thiet-bi-dien-tu");
         break;
 
       case "sub7":

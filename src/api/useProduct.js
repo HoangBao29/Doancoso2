@@ -70,25 +70,31 @@ export const useProduct = () => {
     }
   };
 
-  const deleteProduct = async (value, image) => {
-    const fileName = image.substring(image.lastIndexOf("/") + 1);
+  const deleteProduct = async (value) => {
     try {
       const data = await supabase.from("Products").delete().eq("id", value);
-      supabase.storage.from("images").remove([fileName]);
       return data;
     } catch (error) {
       throw error;
     }
   };
 
-  const deleteImage = async (image) => {
-    const fileName = image.substring(image.lastIndexOf("/") + 1);
+  const deleteImage = async (image, image1, image2) => {
     try {
-      const data = supabase.storage.from("images").remove([fileName]);
-      return data;
-    } catch (error) {
-      throw error;
-    }
+      if (image) {
+        const fileName = image.substring(image.lastIndexOf("/") + 1);
+        supabase.storage.from("images").remove([fileName]);
+      }
+      if (image1) {
+        const fileName = image1.substring(image1.lastIndexOf("/") + 1);
+        supabase.storage.from("images").remove([fileName]);
+      }
+      if (image2) {
+        const fileName = image2.substring(image2.lastIndexOf("/") + 1);
+        supabase.storage.from("images").remove([fileName]);
+      }
+    } catch (error) {}
+    // }
   };
 
   const updateProduct = async (value, id) => {
@@ -100,22 +106,60 @@ export const useProduct = () => {
     }
   };
 
-  const uploadImage = async (file) => {
+  const uploadImage = async (file, file1, file2) => {
     try {
-      const data = await supabase.storage
-        .from("images")
-        .upload(`${file.name}-${Date.now()}`, file, {
-          cacheControl: "3600",
-          upsert: false,
-        });
-      return data;
+      const response = {};
+
+      if (file) {
+        const data = await supabase.storage
+          .from("images")
+          .upload(`${file.name}-${Date.now()}`, file);
+        if (data) {
+          response.image = data?.data?.path;
+        }
+      }
+      if (file1) {
+        const data = await supabase.storage
+          .from("images")
+          .upload(`${file1.name}-${Date.now()}`, file1);
+        if (data) {
+          response.image1 = data?.data?.path;
+        }
+      }
+      if (file2) {
+        const data = await supabase.storage
+          .from("images")
+          .upload(`${file2.name}-${Date.now()}`, file2);
+        if (data) {
+          response.image2 = data?.data?.path;
+        }
+      }
+      return response;
     } catch (error) {}
   };
 
   const getImageUrl = async (data) => {
+    const response = {};
     try {
-      const fileUrl = supabase.storage.from("images").getPublicUrl(data.path);
-      return fileUrl;
+      if (data?.hasOwnProperty("image")) {
+        const fileUrl = supabase.storage
+          .from("images")
+          .getPublicUrl(data.image);
+        response.url = fileUrl;
+      }
+      if (data?.hasOwnProperty("image1")) {
+        const fileUrl = supabase.storage
+          .from("images")
+          .getPublicUrl(data.image1);
+        response.url1 = fileUrl;
+      }
+      if (data?.hasOwnProperty("image2")) {
+        const fileUrl = supabase.storage
+          .from("images")
+          .getPublicUrl(data.image2);
+        response.url2 = fileUrl;
+      }
+      return response;
     } catch (error) {}
   };
 
