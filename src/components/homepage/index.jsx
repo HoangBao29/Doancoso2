@@ -102,7 +102,7 @@ const Homepage = () => {
   return (
     <div className="wrapper-homepage">
       <div className="wrapper-homepage__slide">
-        <Carousel autoplay autoPlaySpeed={5000}>
+        <Carousel autoplay autoplaySpeed={5000}>
           <img
             src={require("../../assets/images/slide/slide1.gif")}
             alt="slide"
