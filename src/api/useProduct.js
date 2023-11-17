@@ -52,9 +52,15 @@ export const useProduct = () => {
     }
   };
 
-  const getProductBrand = async () => {
+  const getProductBrand = async (filter) => {
+    if (filter === undefined) {
+      filter = "";
+    }
     try {
-      const data = await supabase.from("Products").select("brand");
+      const data = await supabase
+        .from("Products")
+        .select("brand")
+        .ilike("type", `%${filter}%`);
       return data;
     } catch (error) {
       throw error;

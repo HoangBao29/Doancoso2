@@ -1,4 +1,4 @@
-import { Button, Form, Input, Modal, Select, message } from "antd";
+import { Button, Col, Form, Input, Modal, Row, Select, message } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { useProduct } from "../../../../api/useProduct";
 
@@ -32,6 +32,7 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
           watt: res?.data?.[0]?.watt,
           engine: res?.data?.[0]?.engine,
           weight: res?.data?.[0]?.weight,
+          model: res?.data?.[0]?.model,
           size: res?.data?.[0]?.size,
           description: res?.data?.[0]?.description,
         });
@@ -41,17 +42,30 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
   }, [id]);
 
   const onFinish = (values) => {
+    if (values?.price === "") {
+      values.price = null;
+    }
+    if (values?.brand === undefined || values?.brand === "") {
+      values.brand = null;
+    }
     uploadImage(file, file1, file2).then((res) => {
       getImageUrl(res).then((res) => {
         if (res?.hasOwnProperty("url")) {
           values.image = res?.url?.data?.publicUrl;
+        } else {
+          values.image = anh;
         }
         if (res?.hasOwnProperty("url1")) {
           values.imagesub1 = res?.url1?.data?.publicUrl;
+        } else {
+          values.imagesub1 = anh1;
         }
         if (res?.hasOwnProperty("url2")) {
           values.imagesub2 = res?.url2?.data?.publicUrl;
+        } else {
+          values.imagesub2 = anh2;
         }
+
         updateProduct(values, id).then((res) => {
           deleteImage(anh, anh1, anh2);
           message.success("Cập nhật sản phẩm thành công", 1);
@@ -181,6 +195,10 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
             <Input placeholder="Thương hiệu sản phẩm" />
           </Form.Item>
 
+          <Form.Item name="model" label="Model">
+            <Input placeholder="Model sản phẩm" />
+          </Form.Item>
+
           <Form.Item name="price" label="Giá">
             <Input placeholder="Giá sản phẩm" />
           </Form.Item>
@@ -205,7 +223,7 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
             <Input placeholder="Thông tin thêm" />
           </Form.Item>
 
-          <Form.Item label="Chọn ảnh" name="image">
+          <Form.Item className="custom-image" label="Chọn ảnh" name="image">
             <input
               onChange={handleFileChange}
               type="file"
@@ -214,7 +232,23 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
             ></input>
           </Form.Item>
 
-          <Form.Item label="Ảnh bổ sung:" name="imagesub1">
+          <Row style={{ marginBottom: "24px" }}>
+            <Col className="custom-label" span={6}>
+              Ảnh đã thêm :
+            </Col>
+            {anh ? (
+              <Col span={18}>
+                <img src={anh} alt="anh-san-pham" />
+              </Col>
+            ) : (
+              <></>
+            )}
+          </Row>
+          <Form.Item
+            className="custom-image"
+            label="Ảnh bổ sung:"
+            name="imagesub1"
+          >
             <input
               onChange={handleFileChange1}
               type="file"
@@ -223,7 +257,24 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
             ></input>
           </Form.Item>
 
-          <Form.Item label="Ảnh bổ sung:" name="imagesub2">
+          <Row style={{ marginBottom: "24px" }}>
+            <Col className="custom-label" span={6}>
+              Ảnh đã thêm :
+            </Col>
+            {anh1 ? (
+              <Col span={18}>
+                <img src={anh1} alt="anh-san-pham" />
+              </Col>
+            ) : (
+              <></>
+            )}
+          </Row>
+
+          <Form.Item
+            className="custom-image"
+            label="Ảnh bổ sung:"
+            name="imagesub2"
+          >
             <input
               onChange={handleFileChange2}
               type="file"
@@ -231,6 +282,19 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
               name="subFile2"
             ></input>
           </Form.Item>
+
+          <Row style={{ marginBottom: "24px" }}>
+            <Col className="custom-label" span={6}>
+              Ảnh đã thêm :
+            </Col>
+            {anh2 ? (
+              <Col span={18}>
+                <img src={anh2} alt="anh-san-pham" />
+              </Col>
+            ) : (
+              <></>
+            )}
+          </Row>
 
           <Form.Item className="button">
             <Button type="primary" htmlType="submit">

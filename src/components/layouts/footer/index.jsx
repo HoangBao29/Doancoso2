@@ -49,7 +49,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <span>Số điện thoại: </span>
-                  <span>0902005762</span>
+                  <span>0902005762 / 0964660621</span>
                 </li>
               </ul>
             </Col>

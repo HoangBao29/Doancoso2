@@ -21,11 +21,11 @@ const Homepage = () => {
       setProduct(res?.data);
       setTotal(res?.count);
     });
-    getProductBrand().then((res) => {
+    getProductBrand(filterType).then((res) => {
       setBrand(res?.data);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterType, filterBrand, sort, page]);
+  }, [filterBrand, sort, page, filterType]);
 
   const { Title } = Typography;
 
@@ -57,7 +57,8 @@ const Homepage = () => {
   ];
 
   const uniqueBrand = Array.from(new Set(brand?.map((item) => item.brand)));
-  const optionsBrand = uniqueBrand?.map((item) => {
+  const filteredUniqueBrand = uniqueBrand.filter((item) => item !== null);
+  const optionsBrand = filteredUniqueBrand.map((item) => {
     return {
       value: item,
       label: item,
@@ -66,6 +67,7 @@ const Homepage = () => {
 
   const handleChange = (value) => {
     setFilterType(value);
+    console.log(value);
   };
 
   const handleChangeBrand = (value) => {
@@ -182,6 +184,51 @@ const Homepage = () => {
           total={total}
           onChange={handlePagination}
         />
+      </div>
+      <div className="wrapper-homepage__consumer">
+        <Title>Đối Tác Hoàng Long</Title>
+        <div className="wrapper-homepage__consumer-logo">
+          <img
+            src={require("../../assets/images/logo/logo1.png")}
+            alt="powerpoint"
+          />
+          <img
+            src={require("../../assets/images/logo/logo2.png")}
+            alt="powerpoint"
+          />
+          <img
+            src={require("../../assets/images/logo/logo3.png")}
+            alt="powerpoint"
+          />
+          <img
+            src={require("../../assets/images/logo/logo4.png")}
+            alt="powerpoint"
+          />
+          <img
+            src={require("../../assets/images/logo/logo5.png")}
+            alt="powerpoint"
+          />
+          <img
+            src={require("../../assets/images/logo/logo6.png")}
+            alt="powerpoint"
+          />
+          <img
+            src={require("../../assets/images/logo/logo7.png")}
+            alt="powerpoint"
+          />
+          <img
+            src={require("../../assets/images/logo/logo8.png")}
+            alt="powerpoint"
+          />
+          <img
+            src={require("../../assets/images/logo/logo9.png")}
+            alt="powerpoint"
+          />
+          <img
+            src={require("../../assets/images/logo/logo10.png")}
+            alt="powerpoint"
+          />
+        </div>
       </div>
     </div>
   );

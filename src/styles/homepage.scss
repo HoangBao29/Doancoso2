@@ -49,6 +49,40 @@
       font-weight: 600;
     }
   }
+
+  &__consumer {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    h1 {
+      margin-bottom: 30px !important;
+    }
+    &-logo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      img {
+        width: calc((100% - 180px) / 10);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .wrapper-homepage {
+    &__consumer {
+      h1 {
+        margin-bottom: 20px !important;
+      }
+      &-logo {
+        flex-wrap: wrap;
+        img {
+          width: calc((100% - 80px) / 5);
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -79,6 +113,11 @@
       .list-image {
         width: 100%;
         flex-direction: row;
+      }
+    }
+    &__consumer {
+      h1 {
+        margin-bottom: 20px !important;
       }
     }
   }

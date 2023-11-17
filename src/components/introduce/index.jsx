@@ -1,4 +1,4 @@
-import { Typography } from "antd";
+import { Col, Row, Typography } from "antd";
 import React from "react";
 
 const Introduce = () => {
@@ -65,6 +65,97 @@ const Introduce = () => {
           We believe in mutual success and thriving business of our customer as
           well as of Hoang Long Thinh Phat.
         </p>
+      </div>
+      <div
+        className="wrapper-introduce__powerpoint"
+        style={{ marginTop: "40px", width: "100%" }}
+      >
+        <Row gutter={[24, 24]}>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp1.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp2.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp3.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp5.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp5.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp6.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp7.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp8.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp9.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp10.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp11.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp12.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp13.png")}
+              alt="powerpoint"
+            />
+          </Col>
+          <Col span={12}>
+            <img
+              src={require("../../assets/images/powerpoint/pp14.png")}
+              alt="powerpoint"
+            />
+          </Col>
+        </Row>
       </div>
     </div>
   );

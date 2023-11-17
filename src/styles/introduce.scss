@@ -13,9 +13,34 @@
     margin-bottom: 10px;
     text-indent: 20px;
   }
+
   &__eng {
     h1 {
       margin-top: 40px;
+    }
+  }
+  &__powerpoint {
+    img {
+      border: 1px solid #828282;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper-introduce {
+    &__powerpoint {
+      .ant-row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        row-gap: 12px !important;
+      }
+      .ant-col {
+        max-width: 100%;
+        flex: 0 0 100%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin: 0 !important;
+      }
     }
   }
 }

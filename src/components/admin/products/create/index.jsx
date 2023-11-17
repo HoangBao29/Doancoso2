@@ -18,6 +18,9 @@ const Create = ({ isModalOpen, handleCancel }) => {
 
   const onFinish = (values) => {
     values.id = uuidv4();
+    if (values?.brand === undefined || values?.brand === "") {
+      values.brand = null;
+    }
     uploadImage(file, file1, file2).then((res) => {
       getImageUrl(res).then((res) => {
         if (res?.hasOwnProperty("url")) {
@@ -157,6 +160,10 @@ const Create = ({ isModalOpen, handleCancel }) => {
 
           <Form.Item name="brand">
             <Input placeholder="Thương hiệu sản phẩm" />
+          </Form.Item>
+
+          <Form.Item name="model">
+            <Input placeholder="Model sản phẩm" />
           </Form.Item>
 
           <Form.Item name="price">
