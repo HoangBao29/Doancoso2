@@ -9,6 +9,7 @@ import {
   DotChartOutlined,
   ThunderboltOutlined,
   DeleteColumnOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import { AutoComplete, Button, Menu, Drawer } from "antd";
 import debounce from "lodash.debounce";
@@ -22,7 +23,12 @@ const Header = ({ adminMode }) => {
   const [value, setValue] = useState("");
   const navigate = useNavigate();
   const [token, setToken] = useState("");
+  const [tokenClient, setTokenClient] = useState("");
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setTokenClient(localStorage.getItem("token-client"));
+  }, []);
 
   const showDrawer = () => {
     setOpen(true);
@@ -42,10 +48,11 @@ const Header = ({ adminMode }) => {
   }
 
   const items = [
-    getItem("Máy phát điện", "sub2"),
-    getItem("Máy nén khí", "sub3"),
-    getItem("Máy phát hàn", "sub4"),
-    getItem("Xe nâng", "sub5"),
+    getItem("Apple", "sub2"),
+    getItem("Samsung", "sub3"),
+    getItem("Xiaomi", "sub4"),
+    getItem("Oppo", "sub5"),
+    getItem("Realme", "sub6"),
   ];
 
   const itemsMenu = [
@@ -89,7 +96,8 @@ const Header = ({ adminMode }) => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("token-client");
+    localStorage.removeItem("auth");
     window.location.reload();
   };
 
@@ -97,27 +105,23 @@ const Header = ({ adminMode }) => {
     onClose();
     switch (value?.key) {
       case "sub2":
-        navigate("/may-phat-dien");
+        navigate("/apple");
         break;
 
       case "sub3":
-        navigate("/may-nen-khi");
+        navigate("/samsung");
         break;
 
       case "sub4":
-        navigate("/may-phat-han");
+        navigate("/xiaomi");
         break;
 
       case "sub5":
-        navigate("/xe-nang");
+        navigate("/oppo");
         break;
 
       case "sub6":
-        navigate("/dong-co-no-khac");
-        break;
-
-      case "sub8":
-        navigate("/linh-kien-thiet-bi-dien-tu");
+        navigate("/realme");
         break;
 
       case "sub7":
@@ -162,7 +166,7 @@ const Header = ({ adminMode }) => {
             alt="logo"
           />
           <span>HOÀNG</span>
-          <span>LONG</span>
+          <span>BẢO</span>
         </Link>
         <div className="wrapper-header__top__action">
           {!token ? (
@@ -185,31 +189,34 @@ const Header = ({ adminMode }) => {
             <></>
           )}
           <div className="action">
-            {!token ? (
+            {/* toán tử 3 ngôi */}
+
+            {tokenClient ? (
               <div
                 style={{ marginRight: "10px" }}
                 className="wrapper-header__top__admin"
               >
                 <Link to="/gioi-thieu">
-                  <MessageOutlined />
-                  <span>Giới thiệu</span>
+                  <UserOutlined />
+                  <span>Trang cá nhân</span>
                 </Link>
               </div>
             ) : (
               <div></div>
             )}
-            {token ? (
+
+            {tokenClient ? (
               <div className="wrapper-header__top__admin">
-                <Link onClick={handleLogout} to="/">
+                <Link onClick={handleLogout} to="/login">
                   <UserSwitchOutlined />
-                  <span>Client</span>
+                  <span>Đăng xuất</span>
                 </Link>
               </div>
             ) : (
               <div className="wrapper-header__top__admin">
-                <Link to="/admin">
+                <Link to="/login">
                   <UserSwitchOutlined />
-                  <span>Admin</span>
+                  <span>Đăng nhập</span>
                 </Link>
               </div>
             )}

@@ -7,6 +7,9 @@
   border-radius: 15px;
   &__content {
     margin-top: 20px;
+    .ant-image {
+      width: 100%;
+    }
     h2 {
       color: black !important;
     }
@@ -14,15 +17,14 @@
       div {
         text-align: left;
         margin-bottom: 20px;
-        &:first-of-type {
-          span {
-            color: red;
-            font-weight: 600;
-          }
-        }
         span {
           font-size: 18px;
           &:first-of-type {
+            font-weight: 600;
+            color: red;
+          }
+          &:nth-of-type(2) {
+            color: red;
             font-weight: 600;
           }
         }

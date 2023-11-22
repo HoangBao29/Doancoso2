@@ -7,25 +7,28 @@ import { Card } from "../commons/card";
 
 const Homepage = () => {
   const { getProduct, getProductBrand } = useProduct();
-  const [brand, setBrand] = useState([]);
+  const [brand, setBrand] = useState("");
   const [product, setProduct] = useState([]);
-  const [filterType, setFilterType] = useState("");
-  const [filterBrand, setFilterBrand] = useState("");
+  const [productPage, setProductPage] = useState([]);
   const [sort, setSort] = useState("");
   const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    getProduct(filterType, filterBrand, sort, page).then((res) => {
-      setProduct(res?.data);
-      setTotal(res?.count);
-    });
-    getProductBrand(filterType).then((res) => {
-      setBrand(res?.data);
-    });
+    // getProduct(filterType, filterBrand, sort, page).then((res) => {
+    //   setProduct(res?.data);
+    //   setTotal(res?.count);
+    // });
+    // getProductBrand(filterType).then((res) => {
+    //   setBrand(res?.data);
+    // });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterBrand, sort, page, filterType]);
+    getProduct().then((res) => {
+      setProduct(res?.data?.data);
+      setProductPage(res?.data?.data?.slice(0, 8));
+      console.log(res);
+    });
+  }, []);
 
   const { Title } = Typography;
 
@@ -56,30 +59,76 @@ const Homepage = () => {
     },
   ];
 
-  const uniqueBrand = Array.from(new Set(brand?.map((item) => item.brand)));
-  const filteredUniqueBrand = uniqueBrand.filter((item) => item !== null);
-  const optionsBrand = filteredUniqueBrand.map((item) => {
-    return {
-      value: item,
-      label: item,
-    };
-  });
-
-  const handleChange = (value) => {
-    setFilterType(value);
-    console.log(value);
-  };
-
   const handleChangeBrand = (value) => {
-    setFilterBrand(value);
+    setBrand(value);
+    console.log(value);
+    switch (value) {
+      case "apple":
+        value = 1;
+        break;
+
+      case "samsung":
+        value = 2;
+        break;
+
+      case "xiaomi":
+        value = 3;
+        break;
+
+      case "oppo":
+        value = 4;
+        break;
+
+      case "realme":
+        value = 5;
+        break;
+      default:
+        break;
+    }
+
+    // filter danh sach product ? productPage
+    const productFilter = product?.filter((item) => {
+      if (value) {
+        return value === item?.id_brand;
+      } else {
+        // value = underfined => clear select brand
+        return { ...item };
+      }
+    });
+    // kiem tra xem dang tang dan hay giam dan
+
+    if (sort === "") {
+      setProductPage(productFilter.slice(0, 8));
+    } else {
+      if (sort === true) {
+        const sortProduct = productFilter.sort(function (a, b) {
+          return a.price - b.price;
+        });
+        setProductPage(sortProduct.slice(0, 8));
+      } else if (sort === false) {
+        const sortProduct = productFilter.sort(function (a, b) {
+          return b.price - a.price;
+        });
+        setProductPage(sortProduct.slice(0, 8));
+        console.log("product", product);
+      } else {
+        const sortRandom = productFilter.sort(function (a, b) {
+          return a.id - b.id;
+        });
+        setProductPage(sortRandom.slice(0, 8));
+      }
+    }
   };
 
   const handleDetail = (id) => {
     navigate(`/detail/${id}`);
   };
 
-  const handlePagination = (page) => {
+  const handlePagination = (page, pageSize) => {
     setPage(page);
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    setProductPage(product?.slice(startIndex, endIndex));
   };
 
   const optionsSort = [
@@ -95,55 +144,84 @@ const Homepage = () => {
 
   const handleChangeSort = (value) => {
     setSort(value);
+    // tr hop tu nho toi lon
+    // setSort(value);
+    console.log("kiem tra value", value);
+    const sortProductFunction = (sanpham) => {
+      if (value === true) {
+        const sortProduct = sanpham.sort(function (a, b) {
+          return a.price - b.price;
+        });
+        setProductPage(sortProduct.slice(0, 8));
+      } else if (value === false) {
+        const sortProduct = sanpham.sort(function (a, b) {
+          return b.price - a.price;
+        });
+        setProductPage(sortProduct.slice(0, 8));
+        console.log("product", product);
+      } else {
+        const sortRandom = sanpham.sort(function (a, b) {
+          return a.id - b.id;
+        });
+        setProductPage(sortRandom.slice(0, 8));
+      }
+    };
+    if (brand === "") {
+      sortProductFunction(product);
+    } else {
+      sortProductFunction(productPage);
+    }
+    //  tr hop tu lon toi be
   };
 
-  const handleClear = () => {
-    setSort("");
-  };
+  const optionsBrand = [
+    {
+      label: "Apple",
+      value: "apple",
+    },
+    {
+      label: "Samsung",
+      value: "samsung",
+    },
+    {
+      label: "Xiaomi",
+      value: "xiaomi",
+    },
+    {
+      label: "Oppo",
+      value: "oppo",
+    },
+    {
+      label: "Realme",
+      value: "realme",
+    },
+  ];
+
+  console.log(productPage);
+  // console.log("product", product);
 
   return (
     <div className="wrapper-homepage">
       <div className="wrapper-homepage__slide">
-        <Carousel autoplay autoplaySpeed={5000}>
+        <Carousel autoplay autoplaySpeed={3000}>
           <img
-            src={require("../../assets/images/slide/slide1.gif")}
+            src="https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/10/phu-kien-9fit-1200x375.jpg"
             alt="slide"
           />
           <img
-            src={require("../../assets/images/slide/slide2.gif")}
+            src="https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/15/web-dong-ho-kieslect-01.jpg"
             alt="slide"
           />
           <img
-            src={require("../../assets/images/slide/slide3.gif")}
+            src="https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/17/1200x375-fold5flip5-171123.jpg"
             alt="slide"
           />
         </Carousel>
-        <ul className="list-image">
-          <li>
-            <img
-              src={require("../../assets/images/slide/slide3.gif")}
-              alt="slide"
-            />
-          </li>
-          <li>
-            <img
-              src={require("../../assets/images/slide/slide2.gif")}
-              alt="slide"
-            />
-          </li>
-        </ul>
       </div>
       <div className="wrapper-homepage__product">
         <Title>Sản phẩm nổi bật</Title>
         <div className="wrapper-homepage__product__select">
           <div className="wrapper-select">
-            <Select
-              style={{ width: "100%" }}
-              onChange={handleChange}
-              options={optionsType}
-              placeholder="Chọn theo sản phẩm"
-              allowClear
-            />
             <Select
               style={{ width: "100%" }}
               onChange={handleChangeBrand}
@@ -158,19 +236,17 @@ const Homepage = () => {
             options={optionsSort}
             placeholder="Sắp xếp giá theo"
             allowClear
-            onClear={handleClear}
           />
         </div>
         <Row gutter={[24, 16]}>
-          {product &&
-            product.map((item, index) => {
+          {productPage &&
+            productPage?.map((item, index) => {
               return (
                 <Col key={index} span={6}>
                   <Card
                     title={item?.name}
                     price={item?.price}
                     image={item?.image}
-                    brand={item?.brand}
                     handleClick={() => handleDetail(item?.id)}
                   />
                 </Col>
@@ -181,7 +257,7 @@ const Homepage = () => {
           className="wrapper-homepage__product__pagination"
           current={page}
           pageSize={8}
-          total={total}
+          total={brand ? productPage?.length : product?.length}
           onChange={handlePagination}
         />
       </div>

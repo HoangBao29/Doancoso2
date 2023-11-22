@@ -16,6 +16,7 @@ import Login from "./components/admin/login";
 import { useLocation } from "react-router-dom";
 import Introduce from "./components/introduce";
 import Chip from "./components/pages/chip";
+import Register from "./components/admin/register";
 
 function App() {
   const location = useLocation();
@@ -30,15 +31,15 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/may-nen-khi" element={<Air />} />
-          <Route path="/may-phat-dien" element={<Electric />} />
-          <Route path="/may-phat-han" element={<Circle />} />
-          <Route path="/xe-nang" element={<Push />} />
-          <Route path="/linh-kien-thiet-bi-dien-tu" element={<Chip />} />
-          <Route path="/dong-co-no-khac" element={<Others />} />
+          <Route path="/apple" element={<Air />} />
+          <Route path="/samsung" element={<Electric />} />
+          <Route path="/xiaomi" element={<Circle />} />
+          <Route path="/oppo" element={<Push />} />
+          <Route path="/realme" element={<Chip />} />
           <Route path="/gioi-thieu" element={<Introduce />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
       <Footer />

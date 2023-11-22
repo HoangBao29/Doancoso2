@@ -1,24 +1,32 @@
 import { supabase } from "../config/supabase";
+import axios from "axios";
 
 export const useUsers = () => {
-  const getUser = async (name, pass) => {
+  const postUser = async (data) => {
     try {
-      const dataName = await supabase
-        .from("Admin")
-        .select("*")
-        .eq("name", name);
-      const dataPass = await supabase
-        .from("Admin")
-        .select("*")
-        .eq("password", pass);
-      if (dataName?.data?.length !== 0 && dataPass?.data?.length !== 0) {
-        return dataName?.data?.[0]?.token;
-      } else {
-        return null;
-      }
+      const res = await axios.post(
+        "http://localhost/laravel8/public/api/register",
+        {
+          params: data,
+        }
+      );
+      return res;
     } catch (error) {
-      throw error;
+      console.log(error);
     }
   };
-  return { getUser };
+
+  const loginUser = async (data) => {
+    try {
+      const res = await axios.post(
+        "http://localhost/laravel8/public/api/login",
+        data
+      );
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { postUser, loginUser };
 };

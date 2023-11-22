@@ -6,7 +6,7 @@ import { useUsers } from "../../../../src/api/useUsers";
 const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const formRef = useRef(null);
-  const { getUser } = useUsers();
+  const { loginUser } = useUsers();
 
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -15,13 +15,21 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onFinish = (values) => {
-    getUser(values.username, values.password).then((res) => {
-      if (res) {
-        localStorage.setItem("token", res);
-        navigate("/admin");
+    loginUser(values).then((res) => {
+      console.log(res);
+      if (res?.status === 200) {
+        if (res?.data?.Auth?.level === 1) {
+          message.success("Đăng nhập thành công chế độ admin!");
+          localStorage.setItem("token", res?.data?.token);
+          localStorage.setItem("auth", res?.data?.Auth);
+        } else {
+          message.success("Đăng nhập thành công!");
+          localStorage.setItem("token-client", res?.data?.token);
+          console.log(res?.data?.Auth);
+          localStorage.setItem("auth", JSON.stringify(res?.data?.Auth));
+        }
+        navigate("/");
         window.location.reload();
-      } else {
-        message.error("Nhập sai tên đăng nhập hoặc mật khẩu", 1);
       }
     });
   };
@@ -31,6 +39,10 @@ const Login = () => {
   const onCancel = () => {
     formRef.current.resetFields();
     handleCancel();
+  };
+
+  const handleRegister = () => {
+    navigate("/register");
   };
 
   return (
@@ -53,15 +65,15 @@ const Login = () => {
           ref={formRef}
         >
           <Form.Item
-            name="username"
+            name="email"
             rules={[
               {
                 required: true,
-                message: "Nhập tên đăng nhập!",
+                message: "Nhập email!",
               },
             ]}
           >
-            <Input placeholder="Tên đăng nhập" />
+            <Input placeholder="Email" />
           </Form.Item>
 
           <Form.Item
@@ -76,11 +88,29 @@ const Login = () => {
             <Input.Password placeholder="Mật khẩu" />
           </Form.Item>
 
-          <Form.Item className="button">
-            <Button type="primary" htmlType="submit" className="button-create">
-              Đăng nhập
-            </Button>
-          </Form.Item>
+          <div
+            style={{ display: "flex", justifyContent: "center", gap: "20px" }}
+          >
+            <Form.Item className="button">
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="button-create"
+              >
+                Đăng nhập
+              </Button>
+            </Form.Item>
+
+            <Form.Item className="button">
+              <Button
+                onClick={handleRegister}
+                type="primary"
+                className="button-create"
+              >
+                Đăng ký
+              </Button>
+            </Form.Item>
+          </div>
         </Form>
       </Modal>
     </div>

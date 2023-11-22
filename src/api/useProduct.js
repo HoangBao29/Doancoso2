@@ -1,32 +1,8 @@
 import { supabase } from "../config/supabase";
+import axios from "axios";
 
 export const useProduct = () => {
   const limit = 8;
-  const getProduct = (type, brand, sort, page, search) => {
-    const rangeFrom = (page - 1) * limit;
-    const rangeTo = page * limit - 1;
-    try {
-      const data = supabase.from("Products").select("*", { count: "exact" });
-      if (type) {
-        data.eq("type", type);
-      }
-      if (brand) {
-        data.eq("brand", brand);
-      }
-      if (sort !== "") {
-        data.order("price", { ascending: sort });
-      }
-      if (page) {
-        data.range(rangeFrom, rangeTo);
-      }
-      if (search) {
-        data.ilike("name", `%${search}%`);
-      }
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  };
 
   const getProductAdmin = () => {
     try {
@@ -34,18 +10,6 @@ export const useProduct = () => {
         .from("Products")
         .select("*", { count: "exact" })
         .order("created_at", { ascending: false });
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  };
-
-  const getProductById = async (id) => {
-    try {
-      const data = await supabase
-        .from("Products")
-        .select("*", { count: "exact" })
-        .eq("id", id);
       return data;
     } catch (error) {
       throw error;
@@ -166,6 +130,30 @@ export const useProduct = () => {
         response.url2 = fileUrl;
       }
       return response;
+    } catch (error) {}
+  };
+
+  // api lay danh sach product
+
+  const getProduct = async () => {
+    try {
+      const data = await axios.get(
+        "http://localhost/laravel8/public/api/product"
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // api lay chi tiet san pham theo id
+
+  const getProductById = async (id) => {
+    try {
+      const data = await axios.get(
+        `http://localhost/laravel8/public/api/product/detail/${id}`
+      );
+      return data;
     } catch (error) {}
   };
 

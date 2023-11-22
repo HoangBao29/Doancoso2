@@ -1,23 +1,15 @@
 import { Image, Typography } from "antd";
 
-export const Card = ({ title, price, image, handleClick, brand }) => {
+export const Card = ({ title, price, image, handleClick }) => {
   const { Title } = Typography;
   return (
     <div className="wrapper-card">
-      <Image alt="example" src={image} />
+      <Image alt="example" src={require("../../../assets/images/demo.webp")} />
       <div onClick={handleClick} className="wrapper-card__content">
         <Title level={5}>{title}</Title>
-        <span className="brand-name">Thương hiệu: </span>
-        <p className="brand-name">{brand}</p>
         <div>
           <span>Giá: </span>
-          {price ? (
-            <>
-              <span>{price.toLocaleString()}</span>
-            </>
-          ) : (
-            <span>Liên hệ</span>
-          )}
+          <span>{price.toLocaleString()}</span>
         </div>
       </div>
     </div>
