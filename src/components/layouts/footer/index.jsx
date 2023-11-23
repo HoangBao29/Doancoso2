@@ -22,34 +22,31 @@ const Footer = () => {
                       src={require("../../../assets/images/logo.png")}
                       alt="logo"
                     />
-                    <span>Hoàng Long Thịnh Phát</span>
+                    <span>Phan Hoàng Bảo</span>
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   Công ty TNHH Một thành viên Thương mại và Dịch vụ Hoàng Long
                   Thịnh Phát
-                </li>
+                </li> */}
                 <li>
                   <span>Người đại diện: </span>
-                  <span>Phan Thanh Linh</span>
+                  <span>Phan Hoàng Bảo</span>
+                </li>
+                <li>
+                  <span>Mã sinh viên: </span>
+                  <span>22IT.B017</span>
                 </li>
                 <li>
                   <span>Trụ sở chính: </span>
                   <span>
-                    371 Trường Chinh, phường An Khê, Quận Thanh Khê, thành phố
+                    470 Trần Đại Nghĩa, phường Hoà Quý, Quận Ngũ Hành Sơn, thành phố
                     Đà Nẵng, Việt Nam.
                   </span>
                 </li>
                 <li>
-                  <span>Tổng kho: </span>
-                  <span>
-                    79B Đinh Liệt, phường Hòa An, quận Cẩm Lệ, thành phố Đà
-                    Nẵng, Việt Nam.
-                  </span>
-                </li>
-                <li>
                   <span>Số điện thoại: </span>
-                  <span>0902005762 / 0964660621</span>
+                  <span>0888913509</span>
                 </li>
               </ul>
             </Col>
@@ -73,9 +70,9 @@ const Footer = () => {
             <Col span={10}>
               <ul>
                 <li>Liên hệ</li>
-                <li>Hotline: 0902.005.762 - 0964.660.621</li>
-                <li>Email: Hoanglongmpd@gmail.com</li>
-                <li>Zalo: 0902005762</li>
+                <li>Hotline: 0888.913.509</li>
+                <li>Email: bao0898232205@gmail.com</li>
+                <li>Zalo: 0888913509</li>
               </ul>
             </Col>
           </Row>

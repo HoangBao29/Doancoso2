@@ -9,13 +9,13 @@ const Sidebar = () => {
   }, []);
   const handleClick = () => {
     window.open(
-      "https://www.facebook.com/profile.php?id=100091660012776",
+      "https://www.facebook.com/profile.php?id=100052074460983",
       "_blank"
     );
   };
 
   const handlePhone = () => {
-    window.open("tel:0902005762");
+    window.open("tel:0888913509");
   };
 
   if (!token) {
@@ -27,7 +27,7 @@ const Sidebar = () => {
             icon={<PhoneOutlined />}
             className="button-common"
           >
-            Liên hệ: 0902.005.762
+            Liên hệ: 0888.913.509
           </Button>
           <Button
             onClick={handleClick}
@@ -38,7 +38,7 @@ const Sidebar = () => {
           </Button>
         </div>
         <Button className="button-common outline">
-          Địa chỉ: 79B Đinh Liệt, Hòa An, Cẩm Lệ, Đà Nẵng.
+          Địa chỉ: 470 Trần Đại Nghĩa, Hoà Quý, Ngũ Hành Sơn, Đà Nẵng.
         </Button>
       </div>
     );

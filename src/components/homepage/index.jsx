@@ -262,7 +262,7 @@ const Homepage = () => {
         />
       </div>
       <div className="wrapper-homepage__consumer">
-        <Title>Đối Tác Hoàng Long</Title>
+        <Title>Đối Tác Hoàng Bảo</Title>
         <div className="wrapper-homepage__consumer-logo">
           <img
             src={require("../../assets/images/logo/logo1.png")}
@@ -282,26 +282,6 @@ const Homepage = () => {
           />
           <img
             src={require("../../assets/images/logo/logo5.png")}
-            alt="powerpoint"
-          />
-          <img
-            src={require("../../assets/images/logo/logo6.png")}
-            alt="powerpoint"
-          />
-          <img
-            src={require("../../assets/images/logo/logo7.png")}
-            alt="powerpoint"
-          />
-          <img
-            src={require("../../assets/images/logo/logo8.png")}
-            alt="powerpoint"
-          />
-          <img
-            src={require("../../assets/images/logo/logo9.png")}
-            alt="powerpoint"
-          />
-          <img
-            src={require("../../assets/images/logo/logo10.png")}
             alt="powerpoint"
           />
         </div>
