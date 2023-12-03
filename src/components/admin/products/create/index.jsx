@@ -2,14 +2,14 @@ import { Button, Form, Input, Modal, Select, message } from "antd";
 import React, { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useProduct } from "../../../../api/useProduct";
+import axios from "axios";
 
 const Create = ({ isModalOpen, handleCancel }) => {
   const [type, setType] = useState("");
   const [file, setFile] = useState();
-  const [file1, setFile1] = useState();
-  const [file2, setFile2] = useState();
+  const [avatar, setAvatar] = useState();
   const formRef = useRef(null);
-  const { postProduct, uploadImage, getImageUrl } = useProduct();
+  const { postProduct } = useProduct();
 
   const layout = {
     labelCol: { span: 24 },
@@ -17,30 +17,41 @@ const Create = ({ isModalOpen, handleCancel }) => {
   };
 
   const onFinish = (values) => {
-    values.id = uuidv4();
-    if (values?.brand === undefined || values?.brand === "") {
-      values.brand = null;
+    const formData = new FormData();
+    // console.log(avatar);
+    formData.append("name", values.name)
+    formData.append("category", 3)
+    formData.append("status", 1)
+    formData.append("sale", 1)
+    formData.append("detail", "ff")
+    formData.append("company", 3)
+    formData.append("brand", values.brand)
+    formData.append("price", values.price)
+    console.log(file);
+    // formData.append("file[]", file)
+    // const img = {
+    //   anh1: file
+    // }
+    const token = localStorage.getItem("token")
+
+    let config = {
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json'
+      }
     }
-    uploadImage(file, file1, file2).then((res) => {
-      getImageUrl(res).then((res) => {
-        if (res?.hasOwnProperty("url")) {
-          values.image = res?.url?.data?.publicUrl;
-        }
-        if (res?.hasOwnProperty("url1")) {
-          values.imagesub1 = res?.url1?.data?.publicUrl;
-        }
-        if (res?.hasOwnProperty("url2")) {
-          values.imagesub2 = res?.url2?.data?.publicUrl;
-        }
-        postProduct(values).then((res) => {
-          message.success("Thêm sản phẩm thành công", 1);
-          handleOk();
-          setTimeout(function () {
-            window.location.reload();
-          }, 1000);
-        });
-      });
-    });
+    Object.keys(file).map((item)=>{
+      formData.append("file[]", file[item])
+    })
+    //hiện thông tin nhập vào
+    // postProduct(formData, token).then((res)=>{
+    //   console.log(res);
+    // })
+    axios.post("http://localhost/laravel8/public/api/user/product/add", formData, config)
+    //call api tạo sản phẩm mới
+  
+    // postProduct(values, token)
   };
 
   const onFinishFailed = (errorInfo) => {};
@@ -55,30 +66,7 @@ const Create = ({ isModalOpen, handleCancel }) => {
   };
 
   const handleFileChange = (e) => {
-    const file = e.target.files;
-    let reader = new FileReader();
-    reader.onload = () => {
-      setFile(file[0]);
-    };
-    reader.readAsDataURL(file[0]);
-  };
-
-  const handleFileChange1 = (e) => {
-    const file1 = e.target.files;
-    let reader = new FileReader();
-    reader.onload = () => {
-      setFile1(file1[0]);
-    };
-    reader.readAsDataURL(file1[0]);
-  };
-
-  const handleFileChange2 = (e) => {
-    const file2 = e.target.files;
-    let reader = new FileReader();
-    reader.onload = () => {
-      setFile2(file2[0]);
-    };
-    reader.readAsDataURL(file2[0]);
+    setFile(e.target.files)
   };
 
   return (
@@ -101,6 +89,7 @@ const Create = ({ isModalOpen, handleCancel }) => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
           ref={formRef}
+          encType="multipart/form-data"
         >
           <Form.Item
             name="name"
@@ -115,107 +104,60 @@ const Create = ({ isModalOpen, handleCancel }) => {
           </Form.Item>
 
           <Form.Item
-            name="type"
+            name="brand"
             rules={[
               {
                 required: true,
-                message: "Chọn loại sản phẩm!",
+                message: "Chọn thương hiệu của sản phẩm!",
               },
             ]}
           >
             <Select
-              placeholder="Chọn loại sản phẩm"
-              value={type}
+              placeholder="Chọn thương hiệu của sản phẩm"
               onChange={(e) => {
                 setType(e);
               }}
               options={[
                 {
-                  value: "Máy phát điện",
-                  label: "Máy phát điện",
+                  value: "Apple",
+                  label: "Apple",
                 },
                 {
-                  value: "Máy nén khí",
-                  label: "Máy nén khí",
+                  value: "Samsung",
+                  label: "Samsung",
                 },
                 {
-                  value: "Máy phát hàn",
-                  label: "Máy phát hàn",
+                  value: "Xiaomi",
+                  label: "Xiaomi",
                 },
                 {
-                  value: "Xe nâng",
-                  label: "Xe nâng",
+                  value: "Oppo",
+                  label: "Oppo",
                 },
                 {
-                  value: "Linh kiện thiết bị điện tử",
-                  label: "Linh kiện thiết bị điện tử",
-                },
-                {
-                  value: "Động cơ nổ khác",
-                  label: "Động cơ nổ khác",
+                  value: "Realme",
+                  label: "Realme",
                 },
               ]}
             />
-          </Form.Item>
-
-          <Form.Item name="brand">
-            <Input placeholder="Thương hiệu sản phẩm" />
-          </Form.Item>
-
-          <Form.Item name="model">
-            <Input placeholder="Model sản phẩm" />
           </Form.Item>
 
           <Form.Item name="price">
             <Input placeholder="Giá sản phẩm" />
           </Form.Item>
 
-          <Form.Item name="watt">
-            <Input placeholder="Công suất sản phẩm" />
+          <Form.Item name="active">
+            <Input placeholder="Số lượng" />
           </Form.Item>
 
-          <Form.Item name="engine">
-            <Input placeholder="Động cơ sản phẩm" />
-          </Form.Item>
 
-          <Form.Item name="size">
-            <Input placeholder="Kích thước sản phẩm" />
-          </Form.Item>
-
-          <Form.Item name="weight">
-            <Input placeholder="Trọng lượng sản phẩm" />
-          </Form.Item>
-
-          <Form.Item name="description">
-            <Input placeholder="Thông tin thêm" />
-          </Form.Item>
-
-          <Form.Item label="Chọn ảnh chính:" name="image">
+          {/* <Form.Item label="Chọn ảnh sản phẩm:" name="image">
             <input
               onChange={handleFileChange}
               type="file"
-              id="myFile"
-              name="filename"
+              multiple
             ></input>
-          </Form.Item>
-
-          <Form.Item label="Chọn ảnh bổ sung:" name="imagesub1">
-            <input
-              onChange={handleFileChange1}
-              type="file"
-              id="subFile1"
-              name="subFile1"
-            ></input>
-          </Form.Item>
-
-          <Form.Item label="Chọn ảnh bổ sung:" name="imagesub2">
-            <input
-              onChange={handleFileChange2}
-              type="file"
-              id="subFile2"
-              name="subFile2"
-            ></input>
-          </Form.Item>
+          </Form.Item>  */}
 
           <Form.Item className="button">
             <Button type="primary" htmlType="submit">

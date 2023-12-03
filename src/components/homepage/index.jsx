@@ -144,6 +144,7 @@ const Homepage = () => {
 
   const handleChangeSort = (value) => {
     setSort(value);
+    setPage(1)
     // tr hop tu nho toi lon
     // setSort(value);
     console.log("kiem tra value", value);

@@ -17,18 +17,20 @@ const Login = () => {
   const onFinish = (values) => {
     loginUser(values).then((res) => {
       console.log(res);
-      if (res?.status === 200) {
-        if (res?.data?.Auth?.level === 1) {
+      if (res?.data?.success === "success") {
+        console.log("code vao day...........");
+        if (res?.data?.Auth?.email === "baoadmin@gmail.com") {
           message.success("Đăng nhập thành công chế độ admin!");
           localStorage.setItem("token", res?.data?.token);
           localStorage.setItem("auth", res?.data?.Auth);
+          navigate("/admin/product");
         } else {
           message.success("Đăng nhập thành công!");
           localStorage.setItem("token-client", res?.data?.token);
           console.log(res?.data?.Auth);
           localStorage.setItem("auth", JSON.stringify(res?.data?.Auth));
+          navigate("/");
         }
-        navigate("/");
         window.location.reload();
       }
     });

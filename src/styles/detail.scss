@@ -20,6 +20,7 @@
         span {
           font-size: 18px;
           &:first-of-type {
+            font-weight: bold;
             font-weight: 600;
             color: red;
           }
@@ -44,7 +45,13 @@
     }
   }
 }
-
+.wrapper-detail__content__description div div {
+  padding-top: 150px;
+  color: blue;
+}
+.custom-span{
+  font-weight: bold;
+}
 @media screen and (max-width: 950px) {
   .wrapper-detail {
     &__content {

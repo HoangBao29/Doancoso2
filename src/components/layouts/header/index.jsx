@@ -20,6 +20,7 @@ import { useProduct } from "../../../api/useProduct";
 const Header = ({ adminMode }) => {
   const { getProduct } = useProduct();
   const [options, setOptions] = useState([]);
+  const [product, setProduct] = useState([]);
   const [value, setValue] = useState("");
   const navigate = useNavigate();
   const [token, setToken] = useState("");
@@ -36,6 +37,41 @@ const Header = ({ adminMode }) => {
   const onClose = () => {
     setOpen(false);
   };
+
+  // lay 25 san pham ve
+  useEffect(()=>{
+    getProduct().then((res)=>{
+      setProduct(res?.data?.data) 
+    })
+  },[])
+
+
+  const handleChange = (e) =>{
+    console.log(e);
+    if (e === undefined) {
+      e = ""
+    }
+    if(product?.length > 0){
+      // console.log(product);
+      const searchList = product?.filter((item)=> {
+        const productName = item.name.toLowerCase();
+        const searchValue = e.toString().toLowerCase();
+        return productName.includes(searchValue)
+      })
+      console.log(searchList);
+      //  xu ly thanh mang [{label: ...; value: ...}]
+      const list = searchList?.map((value)=>{
+        return (
+          // gia tri mong muon trong moi lan duyet
+          {
+            label: value.name,
+            value: value.id
+          }
+        )
+      })
+      setOptions(list);
+  }}
+
 
   function getItem(label, key, icon, children, type) {
     return {
@@ -55,6 +91,12 @@ const Header = ({ adminMode }) => {
     getItem("Realme", "sub6"),
   ];
 
+  const itemsAdmin = [
+    getItem("Quản lý Sản phẩm", "sub9"),
+    getItem("Quản lý Người dùng", "sub8"),
+    getItem("Quản lý Đơn hàng", "sub10"),
+  ];
+
   const itemsMenu = [
     getItem("Máy phát điện", "sub2", <ThunderboltOutlined />),
     getItem("Máy nén khí", "sub3", <DotChartOutlined />),
@@ -69,34 +111,18 @@ const Header = ({ adminMode }) => {
     setToken(localStorage.getItem("token"));
   }, [token]);
 
-  const handleSearch = debounce((value) => {
-    let page = 1;
-    if (value) {
-      page = undefined;
-    } else {
-      page = 1;
-    }
-    getProduct("", "", false, page, value).then((res) => {
-      setOptions(
-        res?.data?.map((item) => ({
-          value: item.id.toString(),
-          label: item.name,
-        }))
-      );
-    });
-  }, 500);
-
-  const onSelect = (value, options) => {
+  const onSelect = (value) => {
+    console.log(value);
     navigate(`/detail/${value}`);
-    setValue(options?.label);
   };
 
-  const handleChange = (value) => {
-    setValue(value);
-  };
+  // const handleChange = (value) => {
+  //   setValue(value);
+  // };
 
   const handleLogout = () => {
     localStorage.removeItem("token-client");
+    localStorage.removeItem("token");
     localStorage.removeItem("auth");
     window.location.reload();
   };
@@ -128,6 +154,18 @@ const Header = ({ adminMode }) => {
         navigate("/gioi-thieu");
         break;
 
+        case "sub8":
+        navigate("/admin/user");
+        break;
+
+        case "sub9":
+        navigate("/admin/product");
+        break;
+
+        case "sub10":
+        navigate("/admin/order");
+        break;
+
       default:
         break;
     }
@@ -148,7 +186,14 @@ const Header = ({ adminMode }) => {
           />
         </Drawer>
         {token ? (
-          <></>
+           <div className="menu-header">
+           <Menu
+             mode="horizontal"
+             onSelect={onSelectMenu}
+             items={itemsAdmin}
+             defaultSelectedKeys={["sub10"]}
+           />
+         </div>
         ) : (
           <div className="menu-header">
             <Menu
@@ -177,11 +222,11 @@ const Header = ({ adminMode }) => {
                 }}
                 options={options}
                 onSelect={onSelect}
-                onSearch={handleSearch}
+                // onSearch={handleSearch}
                 onChange={handleChange}
                 placeholder="Nhập tên sản phẩm cần tìm..."
                 allowClear
-                value={value}
+                // value={value}
               ></AutoComplete>
               <Button className="button" icon={<SearchOutlined />}></Button>
             </div>
@@ -205,7 +250,7 @@ const Header = ({ adminMode }) => {
               <div></div>
             )}
 
-            {tokenClient ? (
+            {tokenClient ||  token ? (
               <div className="wrapper-header__top__admin">
                 <Link onClick={handleLogout} to="/login">
                   <UserSwitchOutlined />
@@ -223,7 +268,7 @@ const Header = ({ adminMode }) => {
           </div>
         </div>
       </div>
-      <div className="wrapper-header__bot">
+      {/* <div className="wrapper-header__bot">
         {!token ? (
           <div className="searching">
             <AutoComplete
@@ -232,8 +277,8 @@ const Header = ({ adminMode }) => {
               }}
               options={options}
               onSelect={onSelect}
-              onSearch={handleSearch}
-              onChange={handleChange}
+              // onSearch={handleSearch}
+              // onChange={handleChange}
               placeholder="Nhập tên sản phẩm cần tìm..."
               allowClear
               value={value}
@@ -243,7 +288,7 @@ const Header = ({ adminMode }) => {
         ) : (
           <></>
         )}
-      </div>
+      </div> */}
     </header>
   );
 };

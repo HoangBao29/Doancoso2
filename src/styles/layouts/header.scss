@@ -57,6 +57,7 @@
   &__search {
     height: 40px;
     display: flex;
+    min-width: 270px;
     .ant-select {
       height: 35px !important;
       width: 100%;

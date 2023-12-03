@@ -6,17 +6,16 @@ import Footer from "./components/layouts/footer";
 import "./styles/index.scss";
 import Detail from "./components/detail";
 import Sidebar from "./components/layouts/sidebar";
-import Air from "./components/pages/air";
-import Electric from "./components/pages/electric";
-import Circle from "./components/pages/circle";
-import Push from "./components/pages/push";
-import Others from "./components/pages/others";
 import Admin from "./components/admin";
 import Login from "./components/admin/login";
 import { useLocation } from "react-router-dom";
 import Introduce from "./components/introduce";
-import Chip from "./components/pages/chip";
 import Register from "./components/admin/register";
+import Apple from "./components/pages/apple";
+import Samsung from "./components/pages/samsung";
+import Xiaomi from "./components/pages/xiaomi";
+import Oppo from "./components/pages/oppo";
+import Realme from "./components/pages/realme";
 
 function App() {
   const location = useLocation();
@@ -31,13 +30,14 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/apple" element={<Air />} />
-          <Route path="/samsung" element={<Electric />} />
-          <Route path="/xiaomi" element={<Circle />} />
-          <Route path="/oppo" element={<Push />} />
-          <Route path="/realme" element={<Chip />} />
+          <Route path="/apple" element={<Apple  />} />
+          <Route path="/samsung" element={<Samsung />} />
+          <Route path="/xiaomi" element={<Xiaomi />} />
+          <Route path="/oppo" element={<Oppo />} />
+          <Route path="/realme" element={<Realme />} />
           <Route path="/gioi-thieu" element={<Introduce />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/product" element={<Admin />} />
+          <Route path="/admin/user" element={<Admin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>

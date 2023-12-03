@@ -12,44 +12,28 @@ const Admin = () => {
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
   const [tableScrollHeight, setTableScrollHeight] = useState(0);
   const [idEdit, setIdEdit] = useState("");
-  const { getProductAdmin, deleteProduct, getProductById, deleteImage } =
+  const { getProduct, deleteProduct, getProductById, deleteImage } =
     useProduct();
   const { Title } = Typography;
   const navigate = useNavigate();
 
   useEffect(() => {
-    getProductAdmin().then((res) => {
-      setListProduct(
-        res?.data?.map((item) => {
-          return {
-            ...item,
-            price: item?.price?.toLocaleString(),
-          };
-        })
-      );
-    });
-
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      navigate("/admin/login");
-    } else {
-      message.success("Đăng nhập thành công chế độ Admin", 1);
-    }
-
+    //  call api lay 25 san pham ve
+    getProduct().then((res)=>{
+      setListProduct(res?.data?.data);
+    })
     const windowHeight = window.innerHeight;
     const subtractValue = 330;
     const calculatedHeight = windowHeight - subtractValue;
     setTableScrollHeight(calculatedHeight);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   const columns = [
     {
-      title: "Ảnh",
+      title: "Ảnh sản phẩm",
       dataIndex: "image",
       key: "image",
-      render: (url) => <Image src={url} alt="Ảnh" />,
+      render: (url) => <Image src={require(`../../assets/images/products/${url}`)} alt="Ảnh" />,
     },
     {
       title: "Tên sản phẩm",
@@ -57,14 +41,24 @@ const Admin = () => {
       key: "name",
     },
     {
-      title: "Loại",
-      dataIndex: "type",
-      key: "type",
-    },
-    {
       title: "Thương hiệu",
-      dataIndex: "brand",
-      key: "brand",
+      dataIndex: "id_brand",
+      key: "id_brand",
+      render: (id_brand) => {
+        if (id_brand === 1) {
+          return 'Apple';
+        } else if (id_brand === 2) {
+          return 'Samsung';
+        } else if (id_brand === 3) {
+          return 'Xiaomi';
+        }else if (id_brand === 4) {
+          return 'Oppo';
+        }else if (id_brand === 5) {
+          return 'Realme';
+        }else {
+          return '';
+        }
+      },
     },
     {
       title: "Giá",
@@ -72,12 +66,12 @@ const Admin = () => {
       key: "price",
     },
     {
-      title: "Thông tin",
-      dataIndex: "description",
-      key: "description",
+      title: "Tồn kho",
+      dataIndex: "active",
+      key: "active",
     },
     {
-      title: "Ngày thêm",
+      title: "Ngày mở bán",
       dataIndex: "created_at",
       key: "created_at",
       render: (value) =>

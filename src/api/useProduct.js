@@ -31,12 +31,18 @@ export const useProduct = () => {
     }
   };
 
-  const postProduct = async (value) => {
+  const postProduct = async (value, token) => {
     try {
-      const data = await supabase.from("Products").insert([value]).select();
-      return data;
+      const data = await axios.post("http://localhost/laravel8/public/api/user/product/add", value,  {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json'
+        }
+      })
+      return data
     } catch (error) {
-      throw error;
+      console.log(error);
     }
   };
 
@@ -55,14 +61,14 @@ export const useProduct = () => {
         const fileName = image.substring(image.lastIndexOf("/") + 1);
         supabase.storage.from("images").remove([fileName]);
       }
-      if (image1) {
-        const fileName = image1.substring(image1.lastIndexOf("/") + 1);
-        supabase.storage.from("images").remove([fileName]);
-      }
-      if (image2) {
-        const fileName = image2.substring(image2.lastIndexOf("/") + 1);
-        supabase.storage.from("images").remove([fileName]);
-      }
+      // if (image1) {
+      //   const fileName = image1.substring(image1.lastIndexOf("/") + 1);
+      //   supabase.storage.from("images").remove([fileName]);
+      // }
+      // if (image2) {
+      //   const fileName = image2.substring(image2.lastIndexOf("/") + 1);
+      //   supabase.storage.from("images").remove([fileName]);
+      // }
     } catch (error) {}
     // }
   };
@@ -76,7 +82,7 @@ export const useProduct = () => {
     }
   };
 
-  const uploadImage = async (file, file1, file2) => {
+  const uploadImage = async (file) => {
     try {
       const response = {};
 
@@ -88,22 +94,22 @@ export const useProduct = () => {
           response.image = data?.data?.path;
         }
       }
-      if (file1) {
-        const data = await supabase.storage
-          .from("images")
-          .upload(`${file1.name}-${Date.now()}`, file1);
-        if (data) {
-          response.image1 = data?.data?.path;
-        }
-      }
-      if (file2) {
-        const data = await supabase.storage
-          .from("images")
-          .upload(`${file2.name}-${Date.now()}`, file2);
-        if (data) {
-          response.image2 = data?.data?.path;
-        }
-      }
+      // if (file1) {
+      //   const data = await supabase.storage
+      //     .from("images")
+      //     .upload(`${file1.name}-${Date.now()}`, file1);
+      //   if (data) {
+      //     response.image1 = data?.data?.path;
+      //   }
+      // }
+      // if (file2) {
+      //   const data = await supabase.storage
+      //     .from("images")
+      //     .upload(`${file2.name}-${Date.now()}`, file2);
+      //   if (data) {
+      //     response.image2 = data?.data?.path;
+      //   }
+      //}
       return response;
     } catch (error) {}
   };
@@ -133,7 +139,7 @@ export const useProduct = () => {
     } catch (error) {}
   };
 
-  // api lay danh sach product
+  // api lay danh sach 25 product
 
   const getProduct = async () => {
     try {

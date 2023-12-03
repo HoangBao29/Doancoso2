@@ -22,18 +22,18 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
     if (id) {
       getProductById(id).then((res) => {
         setAnh(res?.data?.[0]?.image);
-        setAnh1(res?.data?.[0]?.imagesub1);
-        setAnh2(res?.data?.[0]?.imagesub2);
+        // setAnh1(res?.data?.[0]?.imagesub1);
+        // setAnh2(res?.data?.[0]?.imagesub2);
         formRef.current.setFieldsValue({
           name: res?.data?.[0]?.name,
-          type: res?.data?.[0]?.type,
-          brand: res?.data?.[0]?.brand,
+          // type: res?.data?.[0]?.type,
+          id_brand: res?.data?.[0]?.id_brand,
           price: res?.data?.[0]?.price,
-          watt: res?.data?.[0]?.watt,
-          engine: res?.data?.[0]?.engine,
-          weight: res?.data?.[0]?.weight,
-          model: res?.data?.[0]?.model,
-          size: res?.data?.[0]?.size,
+          // watt: res?.data?.[0]?.watt,
+          // engine: res?.data?.[0]?.engine,
+          // weight: res?.data?.[0]?.weight,
+          // model: res?.data?.[0]?.model,
+          // size: res?.data?.[0]?.size,
           description: res?.data?.[0]?.description,
         });
       });
@@ -152,75 +152,51 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
 
           <Form.Item
             name="type"
-            label="Chọn loại"
+            label="Chọn thương hiệu"
             rules={[
               {
                 required: true,
-                message: "Chọn loại sản phẩm!",
+                message: "Chọn thương hiệu của sản phẩm!",
               },
             ]}
           >
             <Select
-              placeholder="Chọn loại sản phẩm"
+              placeholder="Chọn thương hiệu của sản phẩm"
               options={[
                 {
-                  value: "Máy phát điện",
-                  label: "Máy phát điện",
+                  value: "Apple",
+                  label: "Apple",
                 },
                 {
-                  value: "Máy nén khí",
-                  label: "Máy nén khí",
+                  value: "Samsung",
+                  label: "Samsung",
                 },
                 {
-                  value: "Máy phát hàn",
-                  label: "Máy phát hàn",
+                  value: "Xiaomi",
+                  label: "Xiaomi",
                 },
                 {
-                  value: "Xe nâng",
-                  label: "Xe nâng",
+                  value: "Oppo",
+                  label: "Oppo",
                 },
                 {
-                  value: "Linh kiện thiết bị điện tử",
-                  label: "Linh kiện thiết bị điện tử",
-                },
-                {
-                  value: "Động cơ nổ khác",
-                  label: "Động cơ nổ khác",
+                  value: "Realme",
+                  label: "Realme",
                 },
               ]}
             />
           </Form.Item>
 
           <Form.Item name="brand" label="Thương hiệu">
-            <Input placeholder="Thương hiệu sản phẩm" />
-          </Form.Item>
-
-          <Form.Item name="model" label="Model">
-            <Input placeholder="Model sản phẩm" />
-          </Form.Item>
-
-          <Form.Item name="price" label="Giá">
             <Input placeholder="Giá sản phẩm" />
           </Form.Item>
 
-          <Form.Item name="watt" label="Công suất">
-            <Input placeholder="Công suất sản phẩm" />
+          <Form.Item name="model" label="Model">
+            <Input placeholder="Hàng tồn kho" />
           </Form.Item>
 
-          <Form.Item name="engine" label="Động cơ">
-            <Input placeholder="Động cơ sản phẩm" />
-          </Form.Item>
-
-          <Form.Item name="size" label="Kích thước">
-            <Input placeholder="Kích thước sản phẩm" />
-          </Form.Item>
-
-          <Form.Item name="weight" label="Trọng lượng">
-            <Input placeholder="Trọng lượng sản phẩm" />
-          </Form.Item>
-
-          <Form.Item name="description" label="Thông tin thêm">
-            <Input placeholder="Thông tin thêm" />
+          <Form.Item name="price" label="Giá">
+            <Input placeholder="Ngày mở bán" />
           </Form.Item>
 
           <Form.Item className="custom-image" label="Chọn ảnh" name="image">
@@ -244,58 +220,7 @@ const Edit = ({ isModalOpen, handleOk, handleCancel, id }) => {
               <></>
             )}
           </Row>
-          <Form.Item
-            className="custom-image"
-            label="Ảnh bổ sung:"
-            name="imagesub1"
-          >
-            <input
-              onChange={handleFileChange1}
-              type="file"
-              id="subFile1"
-              name="subFile1"
-            ></input>
-          </Form.Item>
-
-          <Row style={{ marginBottom: "24px" }}>
-            <Col className="custom-label" span={6}>
-              Ảnh đã thêm :
-            </Col>
-            {anh1 ? (
-              <Col span={18}>
-                <img src={anh1} alt="anh-san-pham" />
-              </Col>
-            ) : (
-              <></>
-            )}
-          </Row>
-
-          <Form.Item
-            className="custom-image"
-            label="Ảnh bổ sung:"
-            name="imagesub2"
-          >
-            <input
-              onChange={handleFileChange2}
-              type="file"
-              id="subFile2"
-              name="subFile2"
-            ></input>
-          </Form.Item>
-
-          <Row style={{ marginBottom: "24px" }}>
-            <Col className="custom-label" span={6}>
-              Ảnh đã thêm :
-            </Col>
-            {anh2 ? (
-              <Col span={18}>
-                <img src={anh2} alt="anh-san-pham" />
-              </Col>
-            ) : (
-              <></>
-            )}
-          </Row>
-
+    
           <Form.Item className="button">
             <Button type="primary" htmlType="submit">
               Xác nhận
