@@ -77,7 +77,49 @@ const handleDetail = (id) => {
             <span>Giá: </span>
             <span>{product?.price}</span> <br />
             <div>
-              <span className="custom-span">Công nghệ màn hình: </span>
+              <table>
+                <tr>
+                  <th>Công nghệ màn hình:</th>
+                  <td>PLS LCD</td>
+                </tr>
+                <tr>
+                  <th>Độ phân giải:</th>
+                  <td>1080 x 2408 pixels, 50.0 MP x 5.0 MP x 2.0 MP x 2.0 MP, 8.0 MP</td>
+                </tr>
+                <tr>
+                  <th>Kích thước màn hình:</th>
+                  <td>6.6" - tần số quét 120Hz</td>
+                </tr>
+                <tr>
+                  <th>Hệ điều hành:</th>
+                  <td>Android 12</td>
+                </tr>
+                <tr>
+                  <th>Vi xử lý::</th>
+                  <td>SnapDragon 695 5G</td>
+                </tr>
+                <tr>
+                  <th>Bộ nhớ trong:</th>
+                  <td>128 GB</td>
+                </tr>
+                <tr>
+                  <th>RAM:</th>
+                  <td>4 GB</td>
+                </tr>
+                <tr>
+                  <th>Mạng di động:</th>
+                  <td>Hỗ trợ 5G</td>
+                </tr>
+                <tr>
+                  <th>Số khe SIM:</th>
+                  <td>SIM Kép</td>
+                </tr>
+                <tr>
+                  <th>Dung lượng pin:</th>
+                  <td>5000 mAh</td>
+                </tr>
+              </table>
+              {/* <span className="custom-span">Công nghệ màn hình: </span>
               <span>PLS LCD</span> <br />
               <span className="custom-span">Độ phân giải: </span>
               <span>
@@ -103,7 +145,7 @@ const handleDetail = (id) => {
               <br />
               <span className="custom-span">Dung lượng pin: </span>
               <span>5000 mAh</span>
-              <br />
+              <br /> */}
             </div>
           </div>
         </Col>
